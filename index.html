@@ -1,0 +1,3401 @@
+<html>
+<head>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <title>
+  	meme creator
+  </title>
+	<style>
+body{
+	background-color: #262626;
+}
+.h1{
+text-align: center;
+color: #cccccc;
+font-size: 40px;
+font-family: 'Courier New', monospace;
+}
+
+.h3{
+  text-align: center;
+}
+.canvas-wrap {
+  margin-top: 50px;
+  position: relative;
+}
+#canvasID {
+  z-index: 9999;
+}
+.canvas {
+  background-color: #eee;
+   opacity: 0;
+  transition: opacity .3s;
+  &.show {
+    opacity: 1;
+  }
+}
+
+/*
+  ::-webkit-file-upload-button{
+   font-size: 20px;
+   padding:14px 14px;
+   color:white;
+   background-color: #ff8c00;
+   border-radius: 24px;
+   border-color:transparent;
+outline: none;
+  }
+.ji{
+  color:red;
+  outline: none;
+  background-color: transparent;
+
+}
+*/
+
+input[type="file"] {
+    display: none;
+}
+.custom-file-upload {
+   
+    font-size: 20px;
+   padding:14px 14px;
+   color:white;
+   background-color: #ff8c00;
+   border-radius: 24px;
+   border-color:transparent;
+outline: none;
+}
+
+.btn{
+  text-align: center;
+  padding:16px 16px;
+  color:white;
+  background-color: #3271e7;
+  border-color:transparent;
+  border-radius: 12px;
+  font-size: 20px;
+  outline: none;
+}
+}
+
+
+.h2{
+
+
+text-align: center;
+padding:16px 16px;
+color:white;
+
+border-color:transparent;
+border-radius: 12px;
+font-size: 20px;
+outline: none;
+background-color: #ff8c00;
+}
+
+
+input[type=range]{
+    -webkit-appearance: none;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+ 
+    height: 1px;
+    background-color: white;
+  outline: none;
+    border-radius: 3px;
+}
+
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    
+    height: 40px;
+    width: 40px;
+    border-radius: 100%;
+    background: #ff8c00;
+    margin-top: -20px;
+}
+
+
+input[type=range]:focus {
+    outline: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</style>
+	</head>
+<body>
+<div class="h1">
+	<br>
+	Create your own MEME !.!..!...
+</div>
+
+
+<!--
+<div class="ji">
+	<br><br><br>
+<input type="file" id="imageLoader" style="outline: none;" ><span style="color:white;font-family: 'Courier New', monospace;font-size: 20px;outline: none;">&nbsp;or Drag and Drop Here..</span>
+<br><br><br><br><br>
+</div>-->
+<br><br><br>
+<br>
+<label for="file_upload" class="custom-file-upload">
+    <i class="fa fa-cloud-upload"></i>  Upload File
+</label>
+<input type="file" id="file_upload" /><span style="color:white;font-family: 'Courier New', monospace;font-size: 20px;outline: none;">&nbsp;Choose file to upload...</span>
+<br><br><br><br><br>
+
+
+
+
+
+
+
+<div class="h3">
+<button class="btn" onclick="show()">Add Text</button>
+</div>
+
+
+<br><br>
+
+
+
+
+
+
+
+
+
+
+
+<p id ="demo"></p>
+
+<div id="canvas-wrap">
+<canvas style="display: block;" id="imageCanvas" width="1" height="1">
+<canvas id="canvasID"></canvas>
+</div>
+
+
+
+
+
+<script>
+var ii1=0,ii2=0,ii3=0,ii4=0,ii5=0,ii6=0,ii7=0,ii8=0,ii9=0,ii10=0,ii11=0,ii12=0,ii13=0,ii14=0,ii15=0,ii16=0,ii17=0,ii18=0,ii19=0,ii20=0,ii21=0,ii22=0,ii23=0,ii24=0,ii25=0,ii26=0,ii27=0,ii28=0,ii29=0,ii30=0,ii31=0,ii32=0,ii33=0,ii34=0,ii35=0,ii36=0,ii37=0,ii38=0,ii39=0,ii40=0,iii3=0,jj1=0,jj2=0,jj3=0,jj4=0,jj5=0,jj6=0,jj7=0,jj8=0,jj9=0,jj10=0,jj11=0,jj12=0,jj13=0,jj14=0,jj15=0,jj16=0,jj17=0,jj18=0,jj19=0,jj20=0;
+var x=0,y=30,z=100,w=1000,o=10000,f=500,jjj0=0,jjj1=0,jjj2=0,jjj3=0,jjj4=0,jjj5=0,jjj6=0,jjj7=0,jjj8=0,jjj9=0,jjj10=0,jjj11=0,jjj12=0,jjj13=0,jjj14=0,jjj15=0,jjj16=0,jjj17=0,jjj18=0,jjj19=0;
+
+var k1=0,k2=0,k3=0,k4=0,k5=0,k6=0,k7=0,k8=0,k9=0,k10=0,k11=0,k12=0,k13=0,k14=0,k15=0,k16=0,k17=0,k18=0,k19=0,k20=0;
+var k="";
+var y1 ="",y3="",y2="",y0="",y4="",y5="",y6="",y7="",y8="",y9="",y10="",y11="",y12="",y13="",y14="",y15="",y16="",y17="",y18="",y19="";
+var file_upload = document.getElementById('file_upload');
+    file_upload.addEventListener('change', handleImage, false);
+
+var canvas = document.getElementById('imageCanvas');
+var ctx = canvas.getContext('2d');
+var cFont = ctx.font;
+var img = new Image();
+img.crossOrigin="anonymous";
+
+
+function post(){
+ 
+        DrawOverlay(img);
+        DrawText(); 
+        DynamicText(img);   
+    
+}
+
+
+function DrawOverlay(img) {
+    ctx.drawImage(img,0,0);
+    ctx.fillStyle = 'transparent';
+    ctx.fillRect(0, 0,canvas.width, canvas.height);
+}
+function DrawText() {
+	
+    ctx.textBaseline = 'middle';
+  
+   if(x==1){
+    y0=document.getElementById("1").value;
+    ii1=document.getElementById("31").value;
+    ii2=document.getElementById("101").value;
+    jj1=document.getElementById("1001").value;
+    jjj0=document.getElementById("10001").value;
+    
+    ctx.fillStyle = jj1;
+
+    k1 = document.getElementById("501");
+    var kk1 = k1.options[k1.selectedIndex].text;
+    ctx.font = jjj0+"px "+kk1;
+    ctx.fillText(y0,ii1,ii2);
+      
+    }
+    if(x==2){
+      y0=document.getElementById("1").value;
+      y1=document.getElementById("2").value;
+     ii1=document.getElementById("31").value;
+    ii2=document.getElementById("101").value;
+    jj1=document.getElementById("1001").value;
+     jjj0=document.getElementById("10001").value;
+    ii3=document.getElementById("32").value;
+    ii4=document.getElementById("102").value;
+    jj2=document.getElementById("1002").value;
+     jjj1=document.getElementById("10002").value;
+    
+ctx.fillStyle = jj1;
+
+    k1 = document.getElementById("501");
+    var kk1 = k1.options[k1.selectedIndex].text;
+    ctx.font = jjj0+"px "+kk1;
+    ctx.fillText(y0,ii1,ii2);
+
+      
+      k2 = document.getElementById("502");
+    var kk2 = k2.options[k2.selectedIndex].text;
+    ctx.font = jjj1+"px "+kk2;
+      
+    
+      ctx.fillStyle = jj2;
+      ctx.fillText(y1,ii3,ii4);
+    }
+    if(x==3){
+      y0=document.getElementById("1").value;
+      y1=document.getElementById("2").value;
+      y2=document.getElementById("3").value;
+      ii1=document.getElementById("31").value;
+    ii2=document.getElementById("101").value;
+    jj1=document.getElementById("1001").value;
+     jjj0=document.getElementById("10001").value;
+
+    ii3=document.getElementById("32").value;
+    ii4=document.getElementById("102").value;
+    jj2=document.getElementById("1002").value;
+     jjj1=document.getElementById("10002").value;
+
+     ii5=document.getElementById("33").value;
+    ii6=document.getElementById("103").value;
+    jj3=document.getElementById("1003").value;
+     jjj2=document.getElementById("10003").value;
+
+    ctx.fillStyle = jj1;
+    k1 = document.getElementById("501");
+    var kk1 = k1.options[k1.selectedIndex].text;
+    ctx.font = jjj0+"px "+kk1;
+
+    ctx.fillText(y0,ii1,ii2);
+     
+     ctx.fillStyle = jj2;
+    k2 = document.getElementById("502");
+    var kk2 = k2.options[k2.selectedIndex].text;
+    ctx.font = jjj1+"px "+kk2;
+    ctx.fillText(y1,ii3,ii4);
+
+     ctx.fillStyle = jj3;
+    k3 = document.getElementById("503");
+    var kk3 = k3.options[k3.selectedIndex].text;
+    ctx.font = jjj2+"px "+kk3;
+    ctx.fillText(y2,ii5,ii6);
+
+
+   }
+    
+    if(x==4){
+
+y0=document.getElementById("1").value;
+      y1=document.getElementById("2").value;
+      y2=document.getElementById("3").value;
+y3=document.getElementById("4").value;
+ii1=document.getElementById("31").value;
+    ii2=document.getElementById("101").value;
+    jj1=document.getElementById("1001").value;
+     jjj0=document.getElementById("10001").value;
+
+    ii3=document.getElementById("32").value;
+    ii4=document.getElementById("102").value;
+    jj2=document.getElementById("1002").value;
+     jjj1=document.getElementById("10002").value;
+
+     ii5=document.getElementById("33").value;
+    ii6=document.getElementById("103").value;
+    jj3=document.getElementById("1003").value;
+     jjj2=document.getElementById("10003").value;
+
+     ii7=document.getElementById("34").value;
+    ii8=document.getElementById("104").value;
+    jj4=document.getElementById("1004").value;
+     jjj3=document.getElementById("10004").value;
+
+    ctx.fillStyle = jj1;
+    k1 = document.getElementById("501");
+    var kk1 = k1.options[k1.selectedIndex].text;
+    ctx.font = jjj0+"px "+kk1;
+    ctx.fillText(y0,ii1,ii2);
+     
+     ctx.fillStyle = jj2;
+    k2 = document.getElementById("502");
+    var kk2 = k2.options[k2.selectedIndex].text;
+    ctx.font = jjj1+"px "+kk2;
+    ctx.fillText(y1,ii3,ii4);
+
+     ctx.fillStyle = jj3;
+    k3 = document.getElementById("503");
+    var kk3 = k3.options[k3.selectedIndex].text;
+    ctx.font = jjj2+"px "+kk3;
+    ctx.fillText(y2,ii5,ii6);
+
+    ctx.fillStyle = jj4;
+    k4 = document.getElementById("504");
+    var kk4 = k4.options[k4.selectedIndex].text;
+    ctx.font = jjj3+"px "+kk4;
+    ctx.fillText(y3,ii7,ii8);
+
+
+    }
+    if(x==5){
+
+    y0=document.getElementById("1").value;
+      y1=document.getElementById("2").value;
+      y2=document.getElementById("3").value;
+y3=document.getElementById("4").value;
+y4=document.getElementById("5").value;
+
+   ii1=document.getElementById("31").value;
+    ii2=document.getElementById("101").value;
+    jj1=document.getElementById("1001").value;
+     jjj0=document.getElementById("10001").value;
+
+    ii3=document.getElementById("32").value;
+    ii4=document.getElementById("102").value;
+    jj2=document.getElementById("1002").value;
+     jjj1=document.getElementById("10002").value;
+
+     ii5=document.getElementById("33").value;
+    ii6=document.getElementById("103").value;
+    jj3=document.getElementById("1003").value;
+     jjj2=document.getElementById("10003").value;
+
+     ii7=document.getElementById("34").value;
+    ii8=document.getElementById("104").value;
+    jj4=document.getElementById("1004").value;
+     jjj3=document.getElementById("10004").value;
+
+     ii9=document.getElementById("35").value;
+    ii10=document.getElementById("105").value;
+    jj5=document.getElementById("1005").value;
+     jjj4=document.getElementById("10005").value;
+
+
+
+
+    ctx.fillStyle = jj1;
+    k1 = document.getElementById("501");
+    var kk1 = k1.options[k1.selectedIndex].text;
+    ctx.font = jjj0+"px "+kk1;
+
+    ctx.fillText(y0,ii1,ii2);
+     
+     ctx.fillStyle = jj2;
+    k2 = document.getElementById("502");
+    var kk2 = k2.options[k2.selectedIndex].text;
+    ctx.font = jjj1+"px "+kk2;
+
+    ctx.fillText(y1,ii3,ii4);
+
+     ctx.fillStyle = jj3;
+    k3 = document.getElementById("503");
+    var kk3 = k3.options[k3.selectedIndex].text;
+    ctx.font = jjj2+"px "+kk3;
+    ctx.fillText(y2,ii5,ii6);
+
+    ctx.fillStyle = jj4;
+    k4 = document.getElementById("504");
+    var kk4 = k4.options[k4.selectedIndex].text;
+    ctx.font = jjj3+"px "+kk4;
+    ctx.fillText(y3,ii7,ii8);
+
+    ctx.fillStyle = jj5;
+    k5 = document.getElementById("505");
+    var kk5 = k5.options[k5.selectedIndex].text;
+    ctx.font = jjj4+"px "+kk5;
+    ctx.fillText(y4,ii9,ii10);
+     
+
+    }
+  
+if(x==6){
+      
+
+    y0=document.getElementById("1").value;
+      y1=document.getElementById("2").value;
+      y2=document.getElementById("3").value;
+y3=document.getElementById("4").value;
+y4=document.getElementById("5").value;
+y5=document.getElementById("6").value;
+
+      ii1=document.getElementById("31").value;
+    ii2=document.getElementById("101").value;
+    jj1=document.getElementById("1001").value;
+     jjj0=document.getElementById("10001").value;
+
+    ii3=document.getElementById("32").value;
+    ii4=document.getElementById("102").value;
+    jj2=document.getElementById("1002").value;
+     jjj1=document.getElementById("10002").value;
+
+     ii5=document.getElementById("33").value;
+    ii6=document.getElementById("103").value;
+    jj3=document.getElementById("1003").value;
+     jjj2=document.getElementById("10003").value;
+
+     ii7=document.getElementById("34").value;
+    ii8=document.getElementById("104").value;
+    jj4=document.getElementById("1004").value;
+     jjj3=document.getElementById("10004").value;
+
+    ii9=document.getElementById("35").value;
+    ii10=document.getElementById("105").value;
+    jj5=document.getElementById("1005").value;
+     jjj4=document.getElementById("10005").value;
+
+     ii11=document.getElementById("36").value;
+    ii12=document.getElementById("106").value;
+    jj6=document.getElementById("1006").value;
+     jjj5=document.getElementById("10006").value;
+
+    ctx.fillStyle = jj1;
+    k1 = document.getElementById("501");
+    var kk1 = k1.options[k1.selectedIndex].text;
+    ctx.font = jjj0+"px "+kk1;
+
+    ctx.fillText(y0,ii1,ii2);
+     
+     ctx.fillStyle = jj2;
+    k2 = document.getElementById("502");
+    var kk2 = k2.options[k2.selectedIndex].text;
+    ctx.font = jjj1+"px "+kk2;
+
+    ctx.fillText(y1,ii3,ii4);
+
+     ctx.fillStyle = jj3;
+    k3 = document.getElementById("503");
+    var kk3 = k3.options[k3.selectedIndex].text;
+    ctx.font = jjj2+"px "+kk3;
+
+    ctx.fillText(y2,ii5,ii6);
+
+    ctx.fillStyle = jj4;
+    k4 = document.getElementById("504");
+    var kk4 = k4.options[k4.selectedIndex].text;
+    ctx.font = jjj3+"px "+kk4;
+
+    ctx.fillText(y3,ii7,ii8);
+
+    ctx.fillStyle = jj5;
+    k5 = document.getElementById("505");
+    var kk5 = k5.options[k5.selectedIndex].text;
+    ctx.font = jjj4+"px "+kk5;
+    ctx.fillText(y4,ii9,ii10);
+
+    ctx.fillStyle = jj6;
+    k6 = document.getElementById("506");
+    var kk6 = k6.options[k6.selectedIndex].text;
+    ctx.font = jjj5+"px "+kk6;
+    ctx.fillText(y5,ii11,ii12);
+
+    }
+    if(x==7){
+     
+     y0=document.getElementById("1").value;
+      y1=document.getElementById("2").value;
+      y2=document.getElementById("3").value;
+y3=document.getElementById("4").value;
+y4=document.getElementById("5").value;
+y5=document.getElementById("6").value;
+y6=document.getElementById("7").value;
+
+
+      ii1=document.getElementById("31").value;
+    ii2=document.getElementById("101").value;
+    jj1=document.getElementById("1001").value;
+     jjj0=document.getElementById("10001").value;
+
+    ii3=document.getElementById("32").value;
+    ii4=document.getElementById("102").value;
+    jj2=document.getElementById("1002").value;
+     jjj1=document.getElementById("10002").value;
+
+     ii5=document.getElementById("33").value;
+    ii6=document.getElementById("103").value;
+    jj3=document.getElementById("1003").value;
+     jjj2=document.getElementById("10003").value;
+
+     ii7=document.getElementById("34").value;
+    ii8=document.getElementById("104").value;
+    jj4=document.getElementById("1004").value;
+     jjj3=document.getElementById("10004").value;
+
+    ii9=document.getElementById("35").value;
+    ii10=document.getElementById("105").value;
+    jj5=document.getElementById("1005").value;
+     jjj4=document.getElementById("10005").value;
+
+     ii11=document.getElementById("36").value;
+    ii12=document.getElementById("106").value;
+    jj6=document.getElementById("1006").value;
+     jjj5=document.getElementById("10006").value;
+
+     ii13=document.getElementById("37").value;
+    ii14=document.getElementById("107").value;
+    jj7=document.getElementById("1007").value;
+     jjj6=document.getElementById("10007").value;
+
+    ctx.fillStyle = jj1;
+    k1 = document.getElementById("501");
+    var kk1 = k1.options[k1.selectedIndex].text;
+    ctx.font = jjj0+"px "+kk1;
+
+    ctx.fillText(y0,ii1,ii2);
+     
+     ctx.fillStyle = jj2;
+    k2 = document.getElementById("502");
+    var kk2 = k2.options[k2.selectedIndex].text;
+    ctx.font = jjj1+"px "+kk2;
+    ctx.fillText(y1,ii3,ii4);
+
+     ctx.fillStyle = jj3;
+    k3 = document.getElementById("503");
+    var kk3 = k3.options[k3.selectedIndex].text;
+    ctx.font = jjj2+"px "+kk3;
+
+    ctx.fillText(y2,ii5,ii6);
+
+    ctx.fillStyle = jj4;
+    k4 = document.getElementById("504");
+    var kk4 = k4.options[k4.selectedIndex].text;
+    ctx.font = jjj3+"px "+kk4;
+    ctx.fillText(y3,ii7,ii8);
+
+    ctx.fillStyle = jj5;
+    k5 = document.getElementById("505");
+    var kk5 = k5.options[k5.selectedIndex].text;
+    ctx.font = jjj4+"px "+kk5;
+    ctx.fillText(y4,ii9,ii10);
+
+    ctx.fillStyle = jj6;
+    k6 = document.getElementById("506");
+    var kk6 = k6.options[k6.selectedIndex].text;
+    ctx.font = jjj5+"px "+kk6;
+    ctx.fillText(y5,ii11,ii12);
+
+    ctx.fillStyle = jj7;
+    k7 = document.getElementById("507");
+    var kk7 = k7.options[k7.selectedIndex].text;
+    ctx.font = jjj6+"px "+kk7;
+    ctx.fillText(y6,ii13,ii14);
+    }
+    if(x==8){
+
+     y0=document.getElementById("1").value;
+      y1=document.getElementById("2").value;
+      y2=document.getElementById("3").value;
+y3=document.getElementById("4").value;
+y4=document.getElementById("5").value;
+y5=document.getElementById("6").value;
+y6=document.getElementById("7").value;
+y7=document.getElementById("8").value;
+      ii1=document.getElementById("31").value;
+    ii2=document.getElementById("101").value;
+    jj1=document.getElementById("1001").value;
+     jjj0=document.getElementById("10001").value;
+
+    ii3=document.getElementById("32").value;
+    ii4=document.getElementById("102").value;
+    jj2=document.getElementById("1002").value;
+     jjj1=document.getElementById("10002").value;
+
+     ii5=document.getElementById("33").value;
+    ii6=document.getElementById("103").value;
+    jj3=document.getElementById("1003").value;
+     jjj2=document.getElementById("10003").value;
+
+     ii7=document.getElementById("34").value;
+    ii8=document.getElementById("104").value;
+    jj4=document.getElementById("1004").value;
+     jjj3=document.getElementById("10004").value;
+
+    ii9=document.getElementById("35").value;
+    ii10=document.getElementById("105").value;
+    jj5=document.getElementById("1005").value;
+     jjj4=document.getElementById("10005").value;
+
+     ii11=document.getElementById("36").value;
+    ii12=document.getElementById("106").value;
+    jj6=document.getElementById("1006").value;
+     jjj5=document.getElementById("10006").value;
+
+     ii13=document.getElementById("37").value;
+    ii14=document.getElementById("107").value;
+    jj7=document.getElementById("1007").value;
+     jjj6=document.getElementById("10007").value;
+
+     ii15=document.getElementById("38").value;
+    ii16=document.getElementById("108").value;
+    jj8=document.getElementById("1008").value;
+     jjj7=document.getElementById("10008").value;
+
+    ctx.fillStyle = jj1;
+    k1 = document.getElementById("501");
+    var kk1 = k1.options[k1.selectedIndex].text;
+    ctx.font = jjj0+"px "+kk1;
+
+    ctx.fillText(y0,ii1,ii2);
+     
+     ctx.fillStyle = jj2;
+    k2 = document.getElementById("502");
+    var kk2 = k2.options[k2.selectedIndex].text;
+    ctx.font = jjj1+"px "+kk2;
+
+    ctx.fillText(y1,ii3,ii4);
+
+     ctx.fillStyle = jj3;
+    k3 = document.getElementById("503");
+    var kk3 = k3.options[k3.selectedIndex].text;
+    ctx.font = jjj2+"px "+kk3;
+
+    ctx.fillText(y2,ii5,ii6);
+
+    ctx.fillStyle = jj4;
+    k4 = document.getElementById("504");
+    var kk4 = k4.options[k4.selectedIndex].text;
+    ctx.font = jjj3+"px "+kk4;
+
+    ctx.fillText(y3,ii7,ii8);
+
+    ctx.fillStyle = jj5;
+    k5 = document.getElementById("505");
+    var kk5 = k5.options[k5.selectedIndex].text;
+    ctx.font = jjj4+"px "+kk5;
+
+    ctx.fillText(y4,ii9,ii10);
+
+    ctx.fillStyle = jj6;
+    k6 = document.getElementById("506");
+    var kk6 = k6.options[k6.selectedIndex].text;
+    ctx.font = jjj5+"px "+kk6;
+
+    ctx.fillText(y5,ii11,ii12);
+
+    ctx.fillStyle = jj7;
+    k7 = document.getElementById("507");
+    var kk7 = k7.options[k7.selectedIndex].text;
+    ctx.font = jjj6+"px "+kk7;
+    ctx.fillText(y6,ii13,ii14);
+
+    ctx.fillStyle = jj8;
+    k8 = document.getElementById("508");
+    var kk8 = k8.options[k8.selectedIndex].text;
+    ctx.font = jjj7+"px "+kk8;
+    ctx.fillText(y7,ii15,ii16);
+
+    }
+    if(x==9){
+
+     y0=document.getElementById("1").value;
+      y1=document.getElementById("2").value;
+      y2=document.getElementById("3").value;
+y3=document.getElementById("4").value;
+y4=document.getElementById("5").value;
+y5=document.getElementById("6").value;
+y6=document.getElementById("7").value;
+y7=document.getElementById("8").value;
+y8=document.getElementById("9").value;
+
+      ii1=document.getElementById("31").value;
+    ii2=document.getElementById("101").value;
+    jj1=document.getElementById("1001").value;
+     jjj0=document.getElementById("10001").value;
+
+    ii3=document.getElementById("32").value;
+    ii4=document.getElementById("102").value;
+    jj2=document.getElementById("1002").value;
+     jjj1=document.getElementById("10002").value;
+
+     ii5=document.getElementById("33").value;
+    ii6=document.getElementById("103").value;
+    jj3=document.getElementById("1003").value;
+     jjj2=document.getElementById("10003").value;
+
+     ii7=document.getElementById("34").value;
+    ii8=document.getElementById("104").value;
+    jj4=document.getElementById("1004").value;
+     jjj3=document.getElementById("10004").value;
+
+    ii9=document.getElementById("35").value;
+    ii10=document.getElementById("105").value;
+    jj5=document.getElementById("1005").value;
+     jjj4=document.getElementById("10005").value;
+
+     ii11=document.getElementById("36").value;
+    ii12=document.getElementById("106").value;
+    jj6=document.getElementById("1006").value;
+     jjj5=document.getElementById("10006").value;
+
+     ii13=document.getElementById("37").value;
+    ii14=document.getElementById("107").value;
+    jj7=document.getElementById("1007").value;
+     jjj6=document.getElementById("10007").value;
+
+     ii15=document.getElementById("38").value;
+    ii16=document.getElementById("108").value;
+    jj8=document.getElementById("1008").value;
+     jjj7=document.getElementById("10008").value;
+
+    ii17=document.getElementById("39").value;
+    ii18=document.getElementById("109").value;
+    jj9=document.getElementById("1009").value;
+     jjj8=document.getElementById("10009").value;
+
+
+    ctx.fillStyle = jj1;
+    k1 = document.getElementById("501");
+    var kk1 = k1.options[k1.selectedIndex].text;
+    ctx.font = jjj0+"px "+kk1;
+
+    ctx.fillText(y0,ii1,ii2);
+     
+     ctx.fillStyle = jj2;
+    k2 = document.getElementById("502");
+    var kk2 = k2.options[k2.selectedIndex].text;
+    ctx.font = jjj1+"px "+kk2;
+    ctx.fillText(y1,ii3,ii4);
+
+     ctx.fillStyle = jj3;
+    k3 = document.getElementById("503");
+    var kk3 = k3.options[k3.selectedIndex].text;
+    ctx.font = jjj2+"px "+kk3;
+    ctx.fillText(y2,ii5,ii6);
+
+    ctx.fillStyle = jj4;
+    k4 = document.getElementById("504");
+    var kk4 = k4.options[k4.selectedIndex].text;
+    ctx.font = jjj3+"px "+kk4;
+    ctx.fillText(y3,ii7,ii8);
+
+    ctx.fillStyle = jj5;
+    k5 = document.getElementById("505");
+    var kk5 = k5.options[k5.selectedIndex].text;
+    ctx.font = jjj4+"px "+kk5;
+
+    ctx.fillText(y4,ii9,ii10);
+
+    ctx.fillStyle = jj6;
+    k6 = document.getElementById("506");
+    var kk6 = k6.options[k6.selectedIndex].text;
+    ctx.font = jjj5+"px "+kk6;
+    ctx.fillText(y5,ii11,ii12);
+
+    ctx.fillStyle = jj7;
+    k7 = document.getElementById("507");
+    var kk7 = k7.options[k7.selectedIndex].text;
+    ctx.font = jjj6+"px "+kk7;
+
+    ctx.fillText(y6,ii13,ii14);
+
+    ctx.fillStyle = jj8;
+    k8 = document.getElementById("508");
+    var kk8 = k8.options[k8.selectedIndex].text;
+    ctx.font = jjj7+"px "+kk8;
+
+    ctx.fillText(y7,ii15,ii16);
+
+     ctx.fillStyle = jj9;
+    k9 = document.getElementById("509");
+    var kk9 = k9.options[k9.selectedIndex].text;
+    ctx.font = jjj8+"px "+kk9;
+
+    ctx.fillText(y8,ii17,ii18);
+
+    }
+    if(x==10){
+      
+     y0=document.getElementById("1").value;
+      y1=document.getElementById("2").value;
+      y2=document.getElementById("3").value;
+y3=document.getElementById("4").value;
+y4=document.getElementById("5").value;
+y5=document.getElementById("6").value;
+y6=document.getElementById("7").value;
+y7=document.getElementById("8").value;
+y8=document.getElementById("9").value;
+y9=document.getElementById("10").value;
+
+    ii1=document.getElementById("31").value;
+    ii2=document.getElementById("101").value;
+    jj1=document.getElementById("1001").value;
+     jjj0=document.getElementById("10001").value;
+
+    ii3=document.getElementById("32").value;
+    ii4=document.getElementById("102").value;
+    jj2=document.getElementById("1002").value;
+     jjj1=document.getElementById("10002").value;
+
+     ii5=document.getElementById("33").value;
+    ii6=document.getElementById("103").value;
+    jj3=document.getElementById("1003").value;
+     jjj2=document.getElementById("10003").value;
+
+     ii7=document.getElementById("34").value;
+    ii8=document.getElementById("104").value;
+    jj4=document.getElementById("1004").value;
+     jjj3=document.getElementById("10004").value;
+
+    ii9=document.getElementById("35").value;
+    ii10=document.getElementById("105").value;
+    jj5=document.getElementById("1005").value;
+     jjj4=document.getElementById("10005").value;
+
+     ii11=document.getElementById("36").value;
+    ii12=document.getElementById("106").value;
+    jj6=document.getElementById("1006").value;
+     jjj5=document.getElementById("10006").value;
+
+     ii13=document.getElementById("37").value;
+    ii14=document.getElementById("107").value;
+    jj7=document.getElementById("1007").value;
+     jjj6=document.getElementById("10007").value;
+
+     ii15=document.getElementById("38").value;
+    ii16=document.getElementById("108").value;
+    jj8=document.getElementById("1008").value;
+     jjj7=document.getElementById("10008").value;
+
+    ii17=document.getElementById("39").value;
+    ii18=document.getElementById("109").value;
+    jj9=document.getElementById("1009").value;
+     jjj8=document.getElementById("10009").value;
+
+
+    ii19=document.getElementById("40").value;
+    ii20=document.getElementById("110").value;
+    jj10=document.getElementById("1010").value;
+     jjj9=document.getElementById("10010").value;
+
+
+
+    ctx.fillStyle = jj1;
+    k1 = document.getElementById("501");
+    var kk1 = k1.options[k1.selectedIndex].text;
+    ctx.font = jjj0+"px "+kk1;
+    ctx.fillText(y0,ii1,ii2);
+     
+     ctx.fillStyle = jj2;
+    k2 = document.getElementById("502");
+    var kk2 = k2.options[k2.selectedIndex].text;
+    ctx.font = jjj1+"px "+kk2;
+    ctx.fillText(y1,ii3,ii4);
+
+     ctx.fillStyle = jj3;
+    k3 = document.getElementById("503");
+    var kk3 = k3.options[k3.selectedIndex].text;
+    ctx.font = jjj2+"px "+kk3;
+    ctx.fillText(y2,ii5,ii6);
+
+    ctx.fillStyle = jj4;
+    k4 = document.getElementById("504");
+    var kk4 = k4.options[k4.selectedIndex].text;
+    ctx.font = jjj3+"px "+kk4;
+
+    ctx.fillText(y3,ii7,ii8);
+
+    ctx.fillStyle = jj5;
+    k5 = document.getElementById("505");
+    var kk5 = k5.options[k5.selectedIndex].text;
+    ctx.font = jjj4+"px "+kk5;
+
+    ctx.fillText(y4,ii9,ii10);
+
+    ctx.fillStyle = jj6;
+    k6 = document.getElementById("506");
+    var kk6 = k6.options[k6.selectedIndex].text;
+    ctx.font = jjj5+"px "+kk6;
+
+    ctx.fillText(y5,ii11,ii12);
+
+    ctx.fillStyle = jj7;
+    k7 = document.getElementById("507");
+    var kk7 = k7.options[k7.selectedIndex].text;
+    ctx.font = jjj6+"px "+kk7;
+
+    ctx.fillText(y6,ii13,ii14);
+
+    ctx.fillStyle = jj8;
+    k8 = document.getElementById("508");
+    var kk8 = k8.options[k8.selectedIndex].text;
+    ctx.font = jjj7+"px "+kk8;
+    ctx.fillText(y7,ii15,ii16);
+
+     ctx.fillStyle = jj9;
+    k9 = document.getElementById("509");
+    var kk9 = k9.options[k9.selectedIndex].text;
+    ctx.font = jjj8+"px "+kk9;
+    ctx.fillText(y8,ii17,ii18);
+
+
+    ctx.fillStyle = jj10;
+    k10 = document.getElementById("510");
+    var kk10 = k10.options[k10.selectedIndex].text;
+    ctx.font = jjj9+"px "+kk10;
+    ctx.fillText(y9,ii19,ii20);
+
+    }
+    
+    if(x==11)
+    {
+      
+     y0=document.getElementById("1").value;
+      y1=document.getElementById("2").value;
+      y2=document.getElementById("3").value;
+y3=document.getElementById("4").value;
+y4=document.getElementById("5").value;
+y5=document.getElementById("6").value;
+y6=document.getElementById("7").value;
+y7=document.getElementById("8").value;
+y8=document.getElementById("9").value;
+y9=document.getElementById("10").value;
+y10=document.getElementById("11").value;
+
+
+    ii1=document.getElementById("31").value;
+    ii2=document.getElementById("101").value;
+    jj1=document.getElementById("1001").value;
+     jjj0=document.getElementById("10001").value;
+
+    ii3=document.getElementById("32").value;
+    ii4=document.getElementById("102").value;
+    jj2=document.getElementById("1002").value;
+     jjj1=document.getElementById("10002").value;
+
+     ii5=document.getElementById("33").value;
+    ii6=document.getElementById("103").value;
+    jj3=document.getElementById("1003").value;
+     jjj2=document.getElementById("10003").value;
+
+     ii7=document.getElementById("34").value;
+    ii8=document.getElementById("104").value;
+    jj4=document.getElementById("1004").value;
+     jjj3=document.getElementById("10004").value;
+
+    ii9=document.getElementById("35").value;
+    ii10=document.getElementById("105").value;
+    jj5=document.getElementById("1005").value;
+     jjj4=document.getElementById("10005").value;
+
+     ii11=document.getElementById("36").value;
+    ii12=document.getElementById("106").value;
+    jj6=document.getElementById("1006").value;
+     jjj5=document.getElementById("10006").value;
+
+     ii13=document.getElementById("37").value;
+    ii14=document.getElementById("107").value;
+    jj7=document.getElementById("1007").value;
+     jjj6=document.getElementById("10007").value;
+
+     ii15=document.getElementById("38").value;
+    ii16=document.getElementById("108").value;
+    jj8=document.getElementById("1008").value;
+     jjj7=document.getElementById("10008").value;
+
+    ii17=document.getElementById("39").value;
+    ii18=document.getElementById("109").value;
+    jj9=document.getElementById("1009").value;
+     jjj8=document.getElementById("10009").value;
+
+
+    ii19=document.getElementById("40").value;
+    ii20=document.getElementById("110").value;
+    jj10=document.getElementById("1010").value;
+     jjj9=document.getElementById("10010").value;
+
+      ii21=document.getElementById("41").value;
+     ii22=document.getElementById("111").value;
+     jj11=document.getElementById("1011").value;
+      jjj10=document.getElementById("10011").value;
+
+
+
+  ctx.fillStyle = jj1;
+k1 = document.getElementById("501");
+    var kk1 = k1.options[k1.selectedIndex].text;
+    ctx.font = jjj0+"px "+kk1;
+ctx.fillText(y0,ii1,ii2);
+
+
+
+ctx.fillStyle = jj2;
+k2 = document.getElementById("502");
+    var kk2 = k2.options[k2.selectedIndex].text;
+    ctx.font = jjj1+"px "+kk2;
+ctx.fillText(y1,ii3,ii4);
+
+
+ctx.fillStyle = jj3;
+k3 = document.getElementById("503");
+    var kk3 = k3.options[k3.selectedIndex].text;
+    ctx.font = jjj2+"px "+kk3;
+ctx.fillText(y2,ii5,ii6);
+
+
+ ctx.fillStyle = jj4;
+k4 = document.getElementById("504");
+    var kk4 = k4.options[k4.selectedIndex].text;
+    ctx.font = jjj3+"px "+kk4;
+ctx.fillText(y3,ii7,ii8);
+
+
+ctx.fillStyle = jj5;
+k5 = document.getElementById("505");
+    var kk5 = k5.options[k5.selectedIndex].text;
+    ctx.font = jjj4+"px "+kk5;
+ctx.fillText(y4,ii9,ii10);
+
+
+ctx.fillStyle = jj6;
+k6 = document.getElementById("506");
+    var kk6 = k6.options[k6.selectedIndex].text;
+    ctx.font = jjj5+"px "+kk6;
+ctx.fillText(y5,ii11,ii12);
+
+
+ctx.fillStyle = jj7;
+k7 = document.getElementById("507");
+    var kk7 = k7.options[k7.selectedIndex].text;
+    ctx.font = jjj6+"px "+kk7;
+ctx.fillText(y6,ii13,ii14);
+
+ctx.fillStyle = jj8;
+k8 = document.getElementById("508");
+    var kk8 = k8.options[k8.selectedIndex].text;
+    ctx.font = jjj7+"px "+kk8;
+ctx.fillText(y7,ii15,ii16);
+
+ctx.fillStyle = jj9;
+k9 = document.getElementById("509");
+    var kk9 = k9.options[k9.selectedIndex].text;
+    ctx.font = jjj8+"px "+kk9;
+ctx.fillText(y8,ii17,ii18);
+
+
+ctx.fillStyle = jj10;
+k10 = document.getElementById("510");
+    var kk10 = k10.options[k10.selectedIndex].text;
+    ctx.font = jjj9+"px "+kk10;
+ctx.fillText(y9,ii19,ii20);
+
+
+    ctx.fillStyle = jj11;
+    k11 = document.getElementById("511");
+    var kk11 = k11.options[k11.selectedIndex].text;
+    ctx.font = jjj10+"px "+kk11;
+    ctx.fillText(y10,ii21,ii22);
+
+
+
+
+
+    }
+    if(x==12){
+
+
+    y0=document.getElementById("1").value;
+      y1=document.getElementById("2").value;
+      y2=document.getElementById("3").value;
+y3=document.getElementById("4").value;
+y4=document.getElementById("5").value;
+y5=document.getElementById("6").value;
+y6=document.getElementById("7").value;
+y7=document.getElementById("8").value;
+y8=document.getElementById("9").value;
+y9=document.getElementById("10").value;
+y10=document.getElementById("11").value;
+y11=document.getElementById("12").value;
+
+
+
+     ii1=document.getElementById("31").value;
+    ii2=document.getElementById("101").value;
+    jj1=document.getElementById("1001").value;
+     jjj0=document.getElementById("10001").value;
+
+    ii3=document.getElementById("32").value;
+    ii4=document.getElementById("102").value;
+    jj2=document.getElementById("1002").value;
+     jjj1=document.getElementById("10002").value;
+
+     ii5=document.getElementById("33").value;
+    ii6=document.getElementById("103").value;
+    jj3=document.getElementById("1003").value;
+     jjj2=document.getElementById("10003").value;
+
+     ii7=document.getElementById("34").value;
+    ii8=document.getElementById("104").value;
+    jj4=document.getElementById("1004").value;
+     jjj3=document.getElementById("10004").value;
+
+    ii9=document.getElementById("35").value;
+    ii10=document.getElementById("105").value;
+    jj5=document.getElementById("1005").value;
+     jjj4=document.getElementById("10005").value;
+
+     ii11=document.getElementById("36").value;
+    ii12=document.getElementById("106").value;
+    jj6=document.getElementById("1006").value;
+     jjj5=document.getElementById("10006").value;
+
+     ii13=document.getElementById("37").value;
+    ii14=document.getElementById("107").value;
+    jj7=document.getElementById("1007").value;
+     jjj6=document.getElementById("10007").value;
+
+     ii15=document.getElementById("38").value;
+    ii16=document.getElementById("108").value;
+    jj8=document.getElementById("1008").value;
+     jjj7=document.getElementById("10008").value;
+
+    ii17=document.getElementById("39").value;
+    ii18=document.getElementById("109").value;
+    jj9=document.getElementById("1009").value;
+     jjj8=document.getElementById("10009").value;
+
+
+    ii19=document.getElementById("40").value;
+    ii20=document.getElementById("110").value;
+    jj10=document.getElementById("1010").value;
+     jjj9=document.getElementById("10010").value;
+
+     ii21=document.getElementById("41").value;
+    ii22=document.getElementById("111").value;
+    jj11=document.getElementById("1011").value;
+     jjj10=document.getElementById("10011").value;
+
+     ii23=document.getElementById("42").value;
+    ii24=document.getElementById("112").value;
+    jj12=document.getElementById("1012").value;
+     jjj11=document.getElementById("10012").value;
+
+
+
+    ctx.fillStyle = jj1;
+k1 = document.getElementById("501");
+    var kk1 = k1.options[k1.selectedIndex].text;
+    ctx.font = jjj0+"px "+kk1;
+ctx.fillText(y0,ii1,ii2);
+
+
+
+ctx.fillStyle = jj2;
+k2 = document.getElementById("502");
+    var kk2 = k2.options[k2.selectedIndex].text;
+    ctx.font = jjj1+"px "+kk2;
+ctx.fillText(y1,ii3,ii4);
+
+
+ctx.fillStyle = jj3;
+k3 = document.getElementById("503");
+    var kk3 = k3.options[k3.selectedIndex].text;
+    ctx.font = jjj2+"px "+kk3;
+ctx.fillText(y2,ii5,ii6);
+
+
+ ctx.fillStyle = jj4;
+k4 = document.getElementById("504");
+    var kk4 = k4.options[k4.selectedIndex].text;
+    ctx.font = jjj3+"px "+kk4;
+ctx.fillText(y3,ii7,ii8);
+
+
+ctx.fillStyle = jj5;
+k5 = document.getElementById("505");
+    var kk5 = k5.options[k5.selectedIndex].text;
+    ctx.font = jjj4+"px "+kk5;
+ctx.fillText(y4,ii9,ii10);
+
+
+ctx.fillStyle = jj6;
+k6 = document.getElementById("506");
+    var kk6 = k6.options[k6.selectedIndex].text;
+    ctx.font = jjj5+"px "+kk6;
+ctx.fillText(y5,ii11,ii12);
+
+
+ctx.fillStyle = jj7;
+k7 = document.getElementById("507");
+    var kk7 = k7.options[k7.selectedIndex].text;
+    ctx.font = jjj6+"px "+kk7;
+ctx.fillText(y6,ii13,ii14);
+
+ctx.fillStyle = jj8;
+k8 = document.getElementById("508");
+    var kk8 = k8.options[k8.selectedIndex].text;
+    ctx.font = jjj7+"px "+kk8;
+ctx.fillText(y7,ii15,ii16);
+
+ctx.fillStyle = jj9;
+k9 = document.getElementById("509");
+    var kk9 = k9.options[k9.selectedIndex].text;
+    ctx.font = jjj8+"px "+kk9;
+ctx.fillText(y8,ii17,ii18);
+
+
+ctx.fillStyle = jj10;
+k10 = document.getElementById("510");
+    var kk10 = k10.options[k10.selectedIndex].text;
+    ctx.font = jjj9+"px "+kk10;
+ctx.fillText(y9,ii19,ii20);
+
+
+ ctx.fillStyle = jj11;
+    k11 = document.getElementById("511");
+    var kk11 = k11.options[k11.selectedIndex].text;
+    ctx.font = jjj10+"px "+kk11;
+    ctx.fillText(y10,ii21,ii22);
+
+    ctx.fillStyle = jj12;
+    k12 = document.getElementById("512");
+    var kk12 = k12.options[k12.selectedIndex].text;
+    ctx.font = jjj11+"px "+kk12;
+    ctx.fillText(y11,ii23,ii24); 
+
+
+    }
+    if(x==13){
+      
+    y0=document.getElementById("1").value;
+      y1=document.getElementById("2").value;
+      y2=document.getElementById("3").value;
+y3=document.getElementById("4").value;
+y4=document.getElementById("5").value;
+y5=document.getElementById("6").value;
+y6=document.getElementById("7").value;
+y7=document.getElementById("8").value;
+y8=document.getElementById("9").value;
+y9=document.getElementById("10").value;
+y10=document.getElementById("11").value;
+y11=document.getElementById("12").value;
+y12=document.getElementById("13").value;
+
+
+
+    ii1=document.getElementById("31").value;
+    ii2=document.getElementById("101").value;
+    jj1=document.getElementById("1001").value;
+     jjj0=document.getElementById("10001").value;
+
+    ii3=document.getElementById("32").value;
+    ii4=document.getElementById("102").value;
+    jj2=document.getElementById("1002").value;
+     jjj1=document.getElementById("10002").value;
+
+     ii5=document.getElementById("33").value;
+    ii6=document.getElementById("103").value;
+    jj3=document.getElementById("1003").value;
+     jjj2=document.getElementById("10003").value;
+
+     ii7=document.getElementById("34").value;
+    ii8=document.getElementById("104").value;
+    jj4=document.getElementById("1004").value;
+     jjj3=document.getElementById("10004").value;
+
+    ii9=document.getElementById("35").value;
+    ii10=document.getElementById("105").value;
+    jj5=document.getElementById("1005").value;
+     jjj4=document.getElementById("10005").value;
+
+     ii11=document.getElementById("36").value;
+    ii12=document.getElementById("106").value;
+    jj6=document.getElementById("1006").value;
+     jjj5=document.getElementById("10006").value;
+
+     ii13=document.getElementById("37").value;
+    ii14=document.getElementById("107").value;
+    jj7=document.getElementById("1007").value;
+     jjj6=document.getElementById("10007").value;
+
+     ii15=document.getElementById("38").value;
+    ii16=document.getElementById("108").value;
+    jj8=document.getElementById("1008").value;
+     jjj7=document.getElementById("10008").value;
+
+    ii17=document.getElementById("39").value;
+    ii18=document.getElementById("109").value;
+    jj9=document.getElementById("1009").value;
+     jjj8=document.getElementById("10009").value;
+
+
+    ii19=document.getElementById("40").value;
+    ii20=document.getElementById("110").value;
+    jj10=document.getElementById("1010").value;
+     jjj9=document.getElementById("10010").value;
+
+     ii21=document.getElementById("41").value;
+    ii22=document.getElementById("111").value;
+    jj11=document.getElementById("1011").value;
+     jjj10=document.getElementById("10011").value;
+
+     ii23=document.getElementById("42").value;
+    ii24=document.getElementById("112").value;
+    jj12=document.getElementById("1012").value;
+     jjj11=document.getElementById("10012").value;
+
+     ii25=document.getElementById("43").value;
+    ii26=document.getElementById("113").value;
+    jj13=document.getElementById("1013").value;
+     jjj12=document.getElementById("10013").value;
+
+
+ctx.fillStyle = jj1;
+k1 = document.getElementById("501");
+    var kk1 = k1.options[k1.selectedIndex].text;
+    ctx.font = jjj0+"px "+kk1;
+ctx.fillText(y0,ii1,ii2);
+
+
+
+ctx.fillStyle = jj2;
+k2 = document.getElementById("502");
+    var kk2 = k2.options[k2.selectedIndex].text;
+    ctx.font = jjj1+"px "+kk2;
+ctx.fillText(y1,ii3,ii4);
+
+
+ctx.fillStyle = jj3;
+k3 = document.getElementById("503");
+    var kk3 = k3.options[k3.selectedIndex].text;
+    ctx.font = jjj2+"px "+kk3;
+ctx.fillText(y2,ii5,ii6);
+
+
+ ctx.fillStyle = jj4;
+k4 = document.getElementById("504");
+    var kk4 = k4.options[k4.selectedIndex].text;
+    ctx.font = jjj3+"px "+kk4;
+ctx.fillText(y3,ii7,ii8);
+
+
+ctx.fillStyle = jj5;
+k5 = document.getElementById("505");
+    var kk5 = k5.options[k5.selectedIndex].text;
+    ctx.font = jjj4+"px "+kk5;
+ctx.fillText(y4,ii9,ii10);
+
+
+ctx.fillStyle = jj6;
+k6 = document.getElementById("506");
+    var kk6 = k6.options[k6.selectedIndex].text;
+    ctx.font = jjj5+"px "+kk6;
+ctx.fillText(y5,ii11,ii12);
+
+
+ctx.fillStyle = jj7;
+k7 = document.getElementById("507");
+    var kk7 = k7.options[k7.selectedIndex].text;
+    ctx.font = jjj6+"px "+kk7;
+ctx.fillText(y6,ii13,ii14);
+
+ctx.fillStyle = jj8;
+k8 = document.getElementById("508");
+    var kk8 = k8.options[k8.selectedIndex].text;
+    ctx.font = jjj7+"px "+kk8;
+ctx.fillText(y7,ii15,ii16);
+
+ctx.fillStyle = jj9;
+k9 = document.getElementById("509");
+    var kk9 = k9.options[k9.selectedIndex].text;
+    ctx.font = jjj8+"px "+kk9;
+ctx.fillText(y8,ii17,ii18);
+
+
+ctx.fillStyle = jj10;
+k10 = document.getElementById("510");
+    var kk10 = k10.options[k10.selectedIndex].text;
+    ctx.font = jjj9+"px "+kk10;
+ctx.fillText(y9,ii19,ii20);
+
+
+ ctx.fillStyle = jj11;
+    k11 = document.getElementById("511");
+    var kk11 = k11.options[k11.selectedIndex].text;
+    ctx.font = jjj10+"px "+kk11;
+    ctx.fillText(y10,ii21,ii22);
+
+
+ctx.fillStyle = jj12;
+    k12 = document.getElementById("512");
+    var kk12 = k12.options[k12.selectedIndex].text;
+    ctx.font = jjj11+"px "+kk12;
+    ctx.fillText(y11,ii23,ii24); 
+    
+
+    ctx.fillStyle = jj13;
+    k13 = document.getElementById("513");
+    var kk13 = k13.options[k13.selectedIndex].text;
+    ctx.font = jjj12+"px "+kk13;
+    ctx.fillText(y12,ii25,ii26); 
+
+
+
+
+
+
+    }
+    if(x==14){
+
+
+     y0=document.getElementById("1").value;
+      y1=document.getElementById("2").value;
+      y2=document.getElementById("3").value;
+y3=document.getElementById("4").value;
+y4=document.getElementById("5").value;
+y5=document.getElementById("6").value;
+y6=document.getElementById("7").value;
+y7=document.getElementById("8").value;
+y8=document.getElementById("9").value;
+y9=document.getElementById("10").value;
+y10=document.getElementById("11").value;
+y11=document.getElementById("12").value;
+y12=document.getElementById("13").value;
+y13=document.getElementById("14").value;
+
+      ii1=document.getElementById("31").value;
+    ii2=document.getElementById("101").value;
+    jj1=document.getElementById("1001").value;
+     jjj0=document.getElementById("10001").value;
+
+    ii3=document.getElementById("32").value;
+    ii4=document.getElementById("102").value;
+    jj2=document.getElementById("1002").value;
+     jjj1=document.getElementById("10002").value;
+
+     ii5=document.getElementById("33").value;
+    ii6=document.getElementById("103").value;
+    jj3=document.getElementById("1003").value;
+     jjj2=document.getElementById("10003").value;
+
+     ii7=document.getElementById("34").value;
+    ii8=document.getElementById("104").value;
+    jj4=document.getElementById("1004").value;
+     jjj3=document.getElementById("10004").value;
+
+    ii9=document.getElementById("35").value;
+    ii10=document.getElementById("105").value;
+    jj5=document.getElementById("1005").value;
+     jjj4=document.getElementById("10005").value;
+
+     ii11=document.getElementById("36").value;
+    ii12=document.getElementById("106").value;
+    jj6=document.getElementById("1006").value;
+     jjj5=document.getElementById("10006").value;
+
+     ii13=document.getElementById("37").value;
+    ii14=document.getElementById("107").value;
+    jj7=document.getElementById("1007").value;
+     jjj6=document.getElementById("10007").value;
+
+     ii15=document.getElementById("38").value;
+    ii16=document.getElementById("108").value;
+    jj8=document.getElementById("1008").value;
+     jjj7=document.getElementById("10008").value;
+
+    ii17=document.getElementById("39").value;
+    ii18=document.getElementById("109").value;
+    jj9=document.getElementById("1009").value;
+     jjj8=document.getElementById("10009").value;
+
+
+    ii19=document.getElementById("40").value;
+    ii20=document.getElementById("110").value;
+    jj10=document.getElementById("1010").value;
+     jjj9=document.getElementById("10010").value;
+
+     ii21=document.getElementById("41").value;
+    ii22=document.getElementById("111").value;
+    jj11=document.getElementById("1011").value;
+     jjj10=document.getElementById("10011").value;
+
+     ii23=document.getElementById("42").value;
+    ii24=document.getElementById("112").value;
+    jj12=document.getElementById("1012").value;
+     jjj11=document.getElementById("10012").value;
+
+     ii25=document.getElementById("43").value;
+    ii26=document.getElementById("113").value;
+    jj13=document.getElementById("1013").value;
+     jjj12=document.getElementById("10013").value;
+
+     ii27=document.getElementById("44").value;
+    ii28=document.getElementById("114").value;
+    jj14=document.getElementById("1014").value;
+     jjj13=document.getElementById("10014").value;
+
+
+
+    ctx.fillStyle = jj1;
+k1 = document.getElementById("501");
+    var kk1 = k1.options[k1.selectedIndex].text;
+    ctx.font = jjj0+"px "+kk1;
+ctx.fillText(y0,ii1,ii2);
+
+
+
+ctx.fillStyle = jj2;
+k2 = document.getElementById("502");
+    var kk2 = k2.options[k2.selectedIndex].text;
+    ctx.font = jjj1+"px "+kk2;
+ctx.fillText(y1,ii3,ii4);
+
+
+ctx.fillStyle = jj3;
+k3 = document.getElementById("503");
+    var kk3 = k3.options[k3.selectedIndex].text;
+    ctx.font = jjj2+"px "+kk3;
+ctx.fillText(y2,ii5,ii6);
+
+
+ ctx.fillStyle = jj4;
+k4 = document.getElementById("504");
+    var kk4 = k4.options[k4.selectedIndex].text;
+    ctx.font = jjj3+"px "+kk4;
+ctx.fillText(y3,ii7,ii8);
+
+
+ctx.fillStyle = jj5;
+k5 = document.getElementById("505");
+    var kk5 = k5.options[k5.selectedIndex].text;
+    ctx.font = jjj4+"px "+kk5;
+ctx.fillText(y4,ii9,ii10);
+
+
+ctx.fillStyle = jj6;
+k6 = document.getElementById("506");
+    var kk6 = k6.options[k6.selectedIndex].text;
+    ctx.font = jjj5+"px "+kk6;
+ctx.fillText(y5,ii11,ii12);
+
+
+ctx.fillStyle = jj7;
+k7 = document.getElementById("507");
+    var kk7 = k7.options[k7.selectedIndex].text;
+    ctx.font = jjj6+"px "+kk7;
+ctx.fillText(y6,ii13,ii14);
+
+ctx.fillStyle = jj8;
+k8 = document.getElementById("508");
+    var kk8 = k8.options[k8.selectedIndex].text;
+    ctx.font = jjj7+"px "+kk8;
+ctx.fillText(y7,ii15,ii16);
+
+ctx.fillStyle = jj9;
+k9 = document.getElementById("509");
+    var kk9 = k9.options[k9.selectedIndex].text;
+    ctx.font = jjj8+"px "+kk9;
+ctx.fillText(y8,ii17,ii18);
+
+
+ctx.fillStyle = jj10;
+k10 = document.getElementById("510");
+    var kk10 = k10.options[k10.selectedIndex].text;
+    ctx.font = jjj9+"px "+kk10;
+ctx.fillText(y9,ii19,ii20);
+
+
+ ctx.fillStyle = jj11;
+    k11 = document.getElementById("511");
+    var kk11 = k11.options[k11.selectedIndex].text;
+    ctx.font = jjj10+"px "+kk11;
+    ctx.fillText(y10,ii21,ii22);
+
+
+ctx.fillStyle = jj12;
+    k12 = document.getElementById("512");
+    var kk12 = k12.options[k12.selectedIndex].text;
+    ctx.font = jjj11+"px "+kk12;
+    ctx.fillText(y11,ii23,ii24); 
+
+
+ctx.fillStyle = jj13;
+    k13 = document.getElementById("513");
+    var kk13 = k13.options[k13.selectedIndex].text;
+    ctx.font = jjj12+"px "+kk13;
+    ctx.fillText(y12,ii25,ii26);  
+
+    ctx.fillStyle = jj14;
+    k14 = document.getElementById("514");
+    var kk14 = k14.options[k14.selectedIndex].text;
+    ctx.font = jjj13+"px "+kk14;
+    ctx.fillText(y13,ii27,ii28); 
+
+
+    }
+    if(x==15){
+
+    y0=document.getElementById("1").value;
+      y1=document.getElementById("2").value;
+      y2=document.getElementById("3").value;
+y3=document.getElementById("4").value;
+y4=document.getElementById("5").value;
+y5=document.getElementById("6").value;
+y6=document.getElementById("7").value;
+y7=document.getElementById("8").value;
+y8=document.getElementById("9").value;
+y9=document.getElementById("10").value;
+y10=document.getElementById("11").value;
+y11=document.getElementById("12").value;
+y12=document.getElementById("13").value;
+y13=document.getElementById("14").value;
+y14=document.getElementById("15").value;
+
+
+
+      ii1=document.getElementById("31").value;
+    ii2=document.getElementById("101").value;
+    jj1=document.getElementById("1001").value;
+     jjj0=document.getElementById("10001").value;
+
+    ii3=document.getElementById("32").value;
+    ii4=document.getElementById("102").value;
+    jj2=document.getElementById("1002").value;
+     jjj1=document.getElementById("10002").value;
+
+     ii5=document.getElementById("33").value;
+    ii6=document.getElementById("103").value;
+    jj3=document.getElementById("1003").value;
+     jjj2=document.getElementById("10003").value;
+
+     ii7=document.getElementById("34").value;
+    ii8=document.getElementById("104").value;
+    jj4=document.getElementById("1004").value;
+     jjj3=document.getElementById("10004").value;
+
+    ii9=document.getElementById("35").value;
+    ii10=document.getElementById("105").value;
+    jj5=document.getElementById("1005").value;
+     jjj4=document.getElementById("10005").value;
+
+     ii11=document.getElementById("36").value;
+    ii12=document.getElementById("106").value;
+    jj6=document.getElementById("1006").value;
+     jjj5=document.getElementById("10006").value;
+
+     ii13=document.getElementById("37").value;
+    ii14=document.getElementById("107").value;
+    jj7=document.getElementById("1007").value;
+     jjj6=document.getElementById("10007").value;
+
+     ii15=document.getElementById("38").value;
+    ii16=document.getElementById("108").value;
+    jj8=document.getElementById("1008").value;
+     jjj7=document.getElementById("10008").value;
+
+    ii17=document.getElementById("39").value;
+    ii18=document.getElementById("109").value;
+    jj9=document.getElementById("1009").value;
+     jjj8=document.getElementById("10009").value;
+
+
+    ii19=document.getElementById("40").value;
+    ii20=document.getElementById("110").value;
+    jj10=document.getElementById("1010").value;
+     jjj9=document.getElementById("10010").value;
+
+     ii21=document.getElementById("41").value;
+    ii22=document.getElementById("111").value;
+    jj11=document.getElementById("1011").value;
+     jjj10=document.getElementById("10011").value;
+
+     ii23=document.getElementById("42").value;
+    ii24=document.getElementById("112").value;
+    jj12=document.getElementById("1012").value;
+     jjj11=document.getElementById("10012").value;
+
+     ii25=document.getElementById("43").value;
+    ii26=document.getElementById("113").value;
+    jj13=document.getElementById("1013").value;
+     jjj12=document.getElementById("10013").value;
+
+     ii27=document.getElementById("44").value;
+    ii28=document.getElementById("114").value;
+    jj14=document.getElementById("1014").value;
+     jjj13=document.getElementById("10014").value;
+
+    ii29=document.getElementById("45").value;
+    ii30=document.getElementById("115").value;
+    jj15=document.getElementById("1015").value;
+     jjj14=document.getElementById("10015").value;
+
+
+
+    
+
+ctx.fillStyle = jj1;
+k1 = document.getElementById("501");
+    var kk1 = k1.options[k1.selectedIndex].text;
+    ctx.font = jjj0+"px "+kk1;
+ctx.fillText(y0,ii1,ii2);
+
+
+
+ctx.fillStyle = jj2;
+k2 = document.getElementById("502");
+    var kk2 = k2.options[k2.selectedIndex].text;
+    ctx.font = jjj1+"px "+kk2;
+ctx.fillText(y1,ii3,ii4);
+
+
+ctx.fillStyle = jj3;
+k3 = document.getElementById("503");
+    var kk3 = k3.options[k3.selectedIndex].text;
+    ctx.font = jjj2+"px "+kk3;
+ctx.fillText(y2,ii5,ii6);
+
+
+ ctx.fillStyle = jj4;
+k4 = document.getElementById("504");
+    var kk4 = k4.options[k4.selectedIndex].text;
+    ctx.font = jjj3+"px "+kk4;
+ctx.fillText(y3,ii7,ii8);
+
+
+ctx.fillStyle = jj5;
+k5 = document.getElementById("505");
+    var kk5 = k5.options[k5.selectedIndex].text;
+    ctx.font = jjj4+"px "+kk5;
+ctx.fillText(y4,ii9,ii10);
+
+
+ctx.fillStyle = jj6;
+k6 = document.getElementById("506");
+    var kk6 = k6.options[k6.selectedIndex].text;
+    ctx.font = jjj5+"px "+kk6;
+ctx.fillText(y5,ii11,ii12);
+
+
+ctx.fillStyle = jj7;
+k7 = document.getElementById("507");
+    var kk7 = k7.options[k7.selectedIndex].text;
+    ctx.font = jjj6+"px "+kk7;
+ctx.fillText(y6,ii13,ii14);
+
+ctx.fillStyle = jj8;
+k8 = document.getElementById("508");
+    var kk8 = k8.options[k8.selectedIndex].text;
+    ctx.font = jjj7+"px "+kk8;
+ctx.fillText(y7,ii15,ii16);
+
+ctx.fillStyle = jj9;
+k9 = document.getElementById("509");
+    var kk9 = k9.options[k9.selectedIndex].text;
+    ctx.font = jjj8+"px "+kk9;
+ctx.fillText(y8,ii17,ii18);
+
+
+ctx.fillStyle = jj10;
+k10 = document.getElementById("510");
+    var kk10 = k10.options[k10.selectedIndex].text;
+    ctx.font = jjj9+"px "+kk10;
+ctx.fillText(y9,ii19,ii20);
+
+
+ ctx.fillStyle = jj11;
+    k11 = document.getElementById("511");
+    var kk11 = k11.options[k11.selectedIndex].text;
+    ctx.font = jjj10+"px "+kk11;
+    ctx.fillText(y10,ii21,ii22);
+
+
+ctx.fillStyle = jj12;
+    k12 = document.getElementById("512");
+    var kk12 = k12.options[k12.selectedIndex].text;
+    ctx.font = jjj11+"px "+kk12;
+    ctx.fillText(y11,ii23,ii24); 
+
+
+ctx.fillStyle = jj13;
+    k13 = document.getElementById("513");
+    var kk13 = k13.options[k13.selectedIndex].text;
+    ctx.font = jjj12+"px "+kk13;
+    ctx.fillText(y12,ii25,ii26); 
+
+
+
+ctx.fillStyle = jj14;
+    k14 = document.getElementById("514");
+    var kk14 = k14.options[k14.selectedIndex].text;
+    ctx.font = jjj13+"px "+kk14;
+    ctx.fillText(y13,ii27,ii28); 
+
+    ctx.fillStyle = jj15;
+    k15 = document.getElementById("515");
+    var kk15 = k15.options[k15.selectedIndex].text;
+    ctx.font = jjj14+"px "+kk15;
+    ctx.fillText(y14,ii29,ii30); 
+
+    }
+    if(x==16){
+      
+    y0=document.getElementById("1").value;
+      y1=document.getElementById("2").value;
+      y2=document.getElementById("3").value;
+y3=document.getElementById("4").value;
+y4=document.getElementById("5").value;
+y5=document.getElementById("6").value;
+y6=document.getElementById("7").value;
+y7=document.getElementById("8").value;
+y8=document.getElementById("9").value;
+y9=document.getElementById("10").value;
+y10=document.getElementById("11").value;
+y11=document.getElementById("12").value;
+y12=document.getElementById("13").value;
+y13=document.getElementById("14").value;
+y14=document.getElementById("15").value;
+y15=document.getElementById("16").value;
+
+
+    ii1=document.getElementById("31").value;
+    ii2=document.getElementById("101").value;
+    jj1=document.getElementById("1001").value;
+     jjj0=document.getElementById("10001").value;
+
+    ii3=document.getElementById("32").value;
+    ii4=document.getElementById("102").value;
+    jj2=document.getElementById("1002").value;
+     jjj1=document.getElementById("10002").value;
+
+     ii5=document.getElementById("33").value;
+    ii6=document.getElementById("103").value;
+    jj3=document.getElementById("1003").value;
+     jjj2=document.getElementById("10003").value;
+
+     ii7=document.getElementById("34").value;
+    ii8=document.getElementById("104").value;
+    jj4=document.getElementById("1004").value;
+     jjj3=document.getElementById("10004").value;
+
+    ii9=document.getElementById("35").value;
+    ii10=document.getElementById("105").value;
+    jj5=document.getElementById("1005").value;
+     jjj4=document.getElementById("10005").value;
+
+     ii11=document.getElementById("36").value;
+    ii12=document.getElementById("106").value;
+    jj6=document.getElementById("1006").value;
+     jjj5=document.getElementById("10006").value;
+
+     ii13=document.getElementById("37").value;
+    ii14=document.getElementById("107").value;
+    jj7=document.getElementById("1007").value;
+     jjj6=document.getElementById("10007").value;
+
+     ii15=document.getElementById("38").value;
+    ii16=document.getElementById("108").value;
+    jj8=document.getElementById("1008").value;
+     jjj7=document.getElementById("10008").value;
+
+    ii17=document.getElementById("39").value;
+    ii18=document.getElementById("109").value;
+    jj9=document.getElementById("1009").value;
+     jjj8=document.getElementById("10009").value;
+
+
+    ii19=document.getElementById("40").value;
+    ii20=document.getElementById("110").value;
+    jj10=document.getElementById("1010").value;
+     jjj9=document.getElementById("10010").value;
+
+     ii21=document.getElementById("41").value;
+    ii22=document.getElementById("111").value;
+    jj11=document.getElementById("1011").value;
+     jjj10=document.getElementById("10011").value;
+
+     ii23=document.getElementById("42").value;
+    ii24=document.getElementById("112").value;
+    jj12=document.getElementById("1012").value;
+     jjj11=document.getElementById("10012").value;
+
+     ii25=document.getElementById("43").value;
+    ii26=document.getElementById("113").value;
+    jj13=document.getElementById("1013").value;
+     jjj12=document.getElementById("10013").value;
+
+     ii27=document.getElementById("44").value;
+    ii28=document.getElementById("114").value;
+    jj14=document.getElementById("1014").value;
+     jjj13=document.getElementById("10014").value;
+
+    ii29=document.getElementById("45").value;
+    ii30=document.getElementById("115").value;
+    jj15=document.getElementById("1015").value;
+     jjj14=document.getElementById("10015").value;
+
+     ii31=document.getElementById("46").value;
+    ii32=document.getElementById("116").value;
+    jj16=document.getElementById("1016").value;
+     jjj15=document.getElementById("10016").value;
+
+
+
+    
+ctx.fillStyle = jj1;
+k1 = document.getElementById("501");
+    var kk1 = k1.options[k1.selectedIndex].text;
+    ctx.font = jjj0+"px "+kk1;
+ctx.fillText(y0,ii1,ii2);
+
+
+
+ctx.fillStyle = jj2;
+k2 = document.getElementById("502");
+    var kk2 = k2.options[k2.selectedIndex].text;
+    ctx.font = jjj1+"px "+kk2;
+ctx.fillText(y1,ii3,ii4);
+
+
+ctx.fillStyle = jj3;
+k3 = document.getElementById("503");
+    var kk3 = k3.options[k3.selectedIndex].text;
+    ctx.font = jjj2+"px "+kk3;
+ctx.fillText(y2,ii5,ii6);
+
+
+ ctx.fillStyle = jj4;
+k4 = document.getElementById("504");
+    var kk4 = k4.options[k4.selectedIndex].text;
+    ctx.font = jjj3+"px "+kk4;
+ctx.fillText(y3,ii7,ii8);
+
+
+ctx.fillStyle = jj5;
+k5 = document.getElementById("505");
+    var kk5 = k5.options[k5.selectedIndex].text;
+    ctx.font = jjj4+"px "+kk5;
+ctx.fillText(y4,ii9,ii10);
+
+
+ctx.fillStyle = jj6;
+k6 = document.getElementById("506");
+    var kk6 = k6.options[k6.selectedIndex].text;
+    ctx.font = jjj5+"px "+kk6;
+ctx.fillText(y5,ii11,ii12);
+
+
+ctx.fillStyle = jj7;
+k7 = document.getElementById("507");
+    var kk7 = k7.options[k7.selectedIndex].text;
+    ctx.font = jjj6+"px "+kk7;
+ctx.fillText(y6,ii13,ii14);
+
+ctx.fillStyle = jj8;
+k8 = document.getElementById("508");
+    var kk8 = k8.options[k8.selectedIndex].text;
+    ctx.font = jjj7+"px "+kk8;
+ctx.fillText(y7,ii15,ii16);
+
+ctx.fillStyle = jj9;
+k9 = document.getElementById("509");
+    var kk9 = k9.options[k9.selectedIndex].text;
+    ctx.font = jjj8+"px "+kk9;
+ctx.fillText(y8,ii17,ii18);
+
+
+ctx.fillStyle = jj10;
+k10 = document.getElementById("510");
+    var kk10 = k10.options[k10.selectedIndex].text;
+    ctx.font = jjj9+"px "+kk10;
+ctx.fillText(y9,ii19,ii20);
+
+
+ ctx.fillStyle = jj11;
+    k11 = document.getElementById("511");
+    var kk11 = k11.options[k11.selectedIndex].text;
+    ctx.font = jjj10+"px "+kk11;
+    ctx.fillText(y10,ii21,ii22);
+
+
+ctx.fillStyle = jj12;
+    k12 = document.getElementById("512");
+    var kk12 = k12.options[k12.selectedIndex].text;
+    ctx.font = jjj11+"px "+kk12;
+    ctx.fillText(y11,ii23,ii24); 
+
+
+ctx.fillStyle = jj13;
+    k13 = document.getElementById("513");
+    var kk13 = k13.options[k13.selectedIndex].text;
+    ctx.font = jjj12+"px "+kk13;
+    ctx.fillText(y12,ii25,ii26); 
+
+
+
+ctx.fillStyle = jj14;
+    k14 = document.getElementById("514");
+    var kk14 = k14.options[k14.selectedIndex].text;
+    ctx.font = jjj13+"px "+kk14;
+    ctx.fillText(y13,ii27,ii28); 
+
+
+
+ctx.fillStyle = jj15;
+    k15 = document.getElementById("515");
+    var kk15 = k15.options[k15.selectedIndex].text;
+    ctx.font = jjj14+"px "+kk15;
+    ctx.fillText(y14,ii29,ii30); 
+
+     ctx.fillStyle = jj16;
+    k16 = document.getElementById("516");
+    var kk16 = k16.options[k16.selectedIndex].text;
+    ctx.font = jjj15+"px "+kk16;
+    ctx.fillText(y15,ii31,ii32); 
+
+
+    }
+    if(x==17){
+      
+     y0=document.getElementById("1").value;
+      y1=document.getElementById("2").value;
+      y2=document.getElementById("3").value;
+y3=document.getElementById("4").value;
+y4=document.getElementById("5").value;
+y5=document.getElementById("6").value;
+y6=document.getElementById("7").value;
+y7=document.getElementById("8").value;
+y8=document.getElementById("9").value;
+y9=document.getElementById("10").value;
+y10=document.getElementById("11").value;
+y11=document.getElementById("12").value;
+y12=document.getElementById("13").value;
+y13=document.getElementById("14").value;
+y14=document.getElementById("15").value;
+y15=document.getElementById("16").value;
+y16=document.getElementById("17").value;
+
+
+    ii1=document.getElementById("31").value;
+    ii2=document.getElementById("101").value;
+    jj1=document.getElementById("1001").value;
+     jjj0=document.getElementById("10001").value;
+
+    ii3=document.getElementById("32").value;
+    ii4=document.getElementById("102").value;
+    jj2=document.getElementById("1002").value;
+     jjj1=document.getElementById("10002").value;
+
+     ii5=document.getElementById("33").value;
+    ii6=document.getElementById("103").value;
+    jj3=document.getElementById("1003").value;
+     jjj2=document.getElementById("10003").value;
+
+     ii7=document.getElementById("34").value;
+    ii8=document.getElementById("104").value;
+    jj4=document.getElementById("1004").value;
+     jjj3=document.getElementById("10004").value;
+
+    ii9=document.getElementById("35").value;
+    ii10=document.getElementById("105").value;
+    jj5=document.getElementById("1005").value;
+     jjj4=document.getElementById("10005").value;
+
+     ii11=document.getElementById("36").value;
+    ii12=document.getElementById("106").value;
+    jj6=document.getElementById("1006").value;
+     jjj5=document.getElementById("10006").value;
+
+     ii13=document.getElementById("37").value;
+    ii14=document.getElementById("107").value;
+    jj7=document.getElementById("1007").value;
+     jjj6=document.getElementById("10007").value;
+
+     ii15=document.getElementById("38").value;
+    ii16=document.getElementById("108").value;
+    jj8=document.getElementById("1008").value;
+     jjj7=document.getElementById("10008").value;
+
+    ii17=document.getElementById("39").value;
+    ii18=document.getElementById("109").value;
+    jj9=document.getElementById("1009").value;
+     jjj8=document.getElementById("10009").value;
+
+
+    ii19=document.getElementById("40").value;
+    ii20=document.getElementById("110").value;
+    jj10=document.getElementById("1010").value;
+     jjj9=document.getElementById("10010").value;
+
+     ii21=document.getElementById("41").value;
+    ii22=document.getElementById("111").value;
+    jj11=document.getElementById("1011").value;
+     jjj10=document.getElementById("10011").value;
+
+     ii23=document.getElementById("42").value;
+    ii24=document.getElementById("112").value;
+    jj12=document.getElementById("1012").value;
+     jjj11=document.getElementById("10012").value;
+
+     ii25=document.getElementById("43").value;
+    ii26=document.getElementById("113").value;
+    jj13=document.getElementById("1013").value;
+     jjj12=document.getElementById("10013").value;
+
+     ii27=document.getElementById("44").value;
+    ii28=document.getElementById("114").value;
+    jj14=document.getElementById("1014").value;
+     jjj13=document.getElementById("10014").value;
+
+    ii29=document.getElementById("45").value;
+    ii30=document.getElementById("115").value;
+    jj15=document.getElementById("1015").value;
+     jjj14=document.getElementById("10015").value;
+
+     ii31=document.getElementById("46").value;
+    ii32=document.getElementById("116").value;
+    jj16=document.getElementById("1016").value;
+     jjj15=document.getElementById("10016").value;
+
+     ii33=document.getElementById("47").value;
+    ii34=document.getElementById("117").value;
+    jj17=document.getElementById("1017").value;
+     jjj16=document.getElementById("10017").value;
+
+
+
+    
+
+ctx.fillStyle = jj1;
+k1 = document.getElementById("501");
+    var kk1 = k1.options[k1.selectedIndex].text;
+    ctx.font = jjj0+"px "+kk1;
+ctx.fillText(y0,ii1,ii2);
+
+
+
+ctx.fillStyle = jj2;
+k2 = document.getElementById("502");
+    var kk2 = k2.options[k2.selectedIndex].text;
+    ctx.font = jjj1+"px "+kk2;
+ctx.fillText(y1,ii3,ii4);
+
+
+ctx.fillStyle = jj3;
+k3 = document.getElementById("503");
+    var kk3 = k3.options[k3.selectedIndex].text;
+    ctx.font = jjj2+"px "+kk3;
+ctx.fillText(y2,ii5,ii6);
+
+
+ ctx.fillStyle = jj4;
+k4 = document.getElementById("504");
+    var kk4 = k4.options[k4.selectedIndex].text;
+    ctx.font = jjj3+"px "+kk4;
+ctx.fillText(y3,ii7,ii8);
+
+
+ctx.fillStyle = jj5;
+k5 = document.getElementById("505");
+    var kk5 = k5.options[k5.selectedIndex].text;
+    ctx.font = jjj4+"px "+kk5;
+ctx.fillText(y4,ii9,ii10);
+
+
+ctx.fillStyle = jj6;
+k6 = document.getElementById("506");
+    var kk6 = k6.options[k6.selectedIndex].text;
+    ctx.font = jjj5+"px "+kk6;
+ctx.fillText(y5,ii11,ii12);
+
+
+ctx.fillStyle = jj7;
+k7 = document.getElementById("507");
+    var kk7 = k7.options[k7.selectedIndex].text;
+    ctx.font = jjj6+"px "+kk7;
+ctx.fillText(y6,ii13,ii14);
+
+ctx.fillStyle = jj8;
+k8 = document.getElementById("508");
+    var kk8 = k8.options[k8.selectedIndex].text;
+    ctx.font = jjj7+"px "+kk8;
+ctx.fillText(y7,ii15,ii16);
+
+ctx.fillStyle = jj9;
+k9 = document.getElementById("509");
+    var kk9 = k9.options[k9.selectedIndex].text;
+    ctx.font = jjj8+"px "+kk9;
+ctx.fillText(y8,ii17,ii18);
+
+
+ctx.fillStyle = jj10;
+k10 = document.getElementById("510");
+    var kk10 = k10.options[k10.selectedIndex].text;
+    ctx.font = jjj9+"px "+kk10;
+ctx.fillText(y9,ii19,ii20);
+
+
+ ctx.fillStyle = jj11;
+    k11 = document.getElementById("511");
+    var kk11 = k11.options[k11.selectedIndex].text;
+    ctx.font = jjj10+"px "+kk11;
+    ctx.fillText(y10,ii21,ii22);
+
+
+ctx.fillStyle = jj12;
+    k12 = document.getElementById("512");
+    var kk12 = k12.options[k12.selectedIndex].text;
+    ctx.font = jjj11+"px "+kk12;
+    ctx.fillText(y11,ii23,ii24); 
+
+
+ctx.fillStyle = jj13;
+    k13 = document.getElementById("513");
+    var kk13 = k13.options[k13.selectedIndex].text;
+    ctx.font = jjj12+"px "+kk13;
+    ctx.fillText(y12,ii25,ii26); 
+
+
+
+ctx.fillStyle = jj14;
+    k14 = document.getElementById("514");
+    var kk14 = k14.options[k14.selectedIndex].text;
+    ctx.font = jjj13+"px "+kk14;
+    ctx.fillText(y13,ii27,ii28); 
+
+
+
+ctx.fillStyle = jj15;
+    k15 = document.getElementById("515");
+    var kk15 = k15.options[k15.selectedIndex].text;
+    ctx.font = jjj14+"px "+kk15;
+    ctx.fillText(y14,ii29,ii30); 
+
+
+ctx.fillStyle = jj16;
+    k16 = document.getElementById("516");
+    var kk16 = k16.options[k16.selectedIndex].text;
+    ctx.font = jjj15+"px "+kk16;
+    ctx.fillText(y15,ii31,ii32); 
+
+
+    ctx.fillStyle = jj17;
+    k17 = document.getElementById("517");
+    var kk17 = k17.options[k17.selectedIndex].text;
+    ctx.font = jjj16+"px "+kk17;
+    ctx.fillText(y16,ii33,ii34); 
+
+
+
+    }
+    if(x==18){
+      
+    y0=document.getElementById("1").value;
+      y1=document.getElementById("2").value;
+      y2=document.getElementById("3").value;
+y3=document.getElementById("4").value;
+y4=document.getElementById("5").value;
+y5=document.getElementById("6").value;
+y6=document.getElementById("7").value;
+y7=document.getElementById("8").value;
+y8=document.getElementById("9").value;
+y9=document.getElementById("10").value;
+y10=document.getElementById("11").value;
+y11=document.getElementById("12").value;
+y12=document.getElementById("13").value;
+y13=document.getElementById("14").value;
+y14=document.getElementById("15").value;
+y15=document.getElementById("16").value;
+y16=document.getElementById("17").value;
+y17=document.getElementById("18").value;
+
+
+
+ii1=document.getElementById("31").value;
+    ii2=document.getElementById("101").value;
+    jj1=document.getElementById("1001").value;
+     jjj0=document.getElementById("10001").value;
+
+    ii3=document.getElementById("32").value;
+    ii4=document.getElementById("102").value;
+    jj2=document.getElementById("1002").value;
+     jjj1=document.getElementById("10002").value;
+
+     ii5=document.getElementById("33").value;
+    ii6=document.getElementById("103").value;
+    jj3=document.getElementById("1003").value;
+     jjj2=document.getElementById("10003").value;
+
+     ii7=document.getElementById("34").value;
+    ii8=document.getElementById("104").value;
+    jj4=document.getElementById("1004").value;
+     jjj3=document.getElementById("10004").value;
+
+    ii9=document.getElementById("35").value;
+    ii10=document.getElementById("105").value;
+    jj5=document.getElementById("1005").value;
+     jjj4=document.getElementById("10005").value;
+
+     ii11=document.getElementById("36").value;
+    ii12=document.getElementById("106").value;
+    jj6=document.getElementById("1006").value;
+     jjj5=document.getElementById("10006").value;
+
+     ii13=document.getElementById("37").value;
+    ii14=document.getElementById("107").value;
+    jj7=document.getElementById("1007").value;
+     jjj6=document.getElementById("10007").value;
+
+     ii15=document.getElementById("38").value;
+    ii16=document.getElementById("108").value;
+    jj8=document.getElementById("1008").value;
+     jjj7=document.getElementById("10008").value;
+
+    ii17=document.getElementById("39").value;
+    ii18=document.getElementById("109").value;
+    jj9=document.getElementById("1009").value;
+     jjj8=document.getElementById("10009").value;
+
+
+    ii19=document.getElementById("40").value;
+    ii20=document.getElementById("110").value;
+    jj10=document.getElementById("1010").value;
+     jjj9=document.getElementById("10010").value;
+
+     ii21=document.getElementById("41").value;
+    ii22=document.getElementById("111").value;
+    jj11=document.getElementById("1011").value;
+     jjj10=document.getElementById("10011").value;
+
+     ii23=document.getElementById("42").value;
+    ii24=document.getElementById("112").value;
+    jj12=document.getElementById("1012").value;
+     jjj11=document.getElementById("10012").value;
+
+     ii25=document.getElementById("43").value;
+    ii26=document.getElementById("113").value;
+    jj13=document.getElementById("1013").value;
+     jjj12=document.getElementById("10013").value;
+
+     ii27=document.getElementById("44").value;
+    ii28=document.getElementById("114").value;
+    jj14=document.getElementById("1014").value;
+     jjj13=document.getElementById("10014").value;
+
+    ii29=document.getElementById("45").value;
+    ii30=document.getElementById("115").value;
+    jj15=document.getElementById("1015").value;
+     jjj14=document.getElementById("10015").value;
+
+     ii31=document.getElementById("46").value;
+    ii32=document.getElementById("116").value;
+    jj16=document.getElementById("1016").value;
+     jjj15=document.getElementById("10016").value;
+
+     ii33=document.getElementById("47").value;
+    ii34=document.getElementById("117").value;
+    jj17=document.getElementById("1017").value;
+     jjj16=document.getElementById("10017").value;
+
+     ii35=document.getElementById("48").value;
+    ii36=document.getElementById("118").value;
+    jj18=document.getElementById("1018").value;
+     jjj17=document.getElementById("10018").value;
+
+
+
+    
+
+ctx.fillStyle = jj1;
+k1 = document.getElementById("501");
+    var kk1 = k1.options[k1.selectedIndex].text;
+    ctx.font = jjj0+"px "+kk1;
+ctx.fillText(y0,ii1,ii2);
+
+
+
+ctx.fillStyle = jj2;
+k2 = document.getElementById("502");
+    var kk2 = k2.options[k2.selectedIndex].text;
+    ctx.font = jjj1+"px "+kk2;
+ctx.fillText(y1,ii3,ii4);
+
+
+ctx.fillStyle = jj3;
+k3 = document.getElementById("503");
+    var kk3 = k3.options[k3.selectedIndex].text;
+    ctx.font = jjj2+"px "+kk3;
+ctx.fillText(y2,ii5,ii6);
+
+
+ ctx.fillStyle = jj4;
+k4 = document.getElementById("504");
+    var kk4 = k4.options[k4.selectedIndex].text;
+    ctx.font = jjj3+"px "+kk4;
+ctx.fillText(y3,ii7,ii8);
+
+
+ctx.fillStyle = jj5;
+k5 = document.getElementById("505");
+    var kk5 = k5.options[k5.selectedIndex].text;
+    ctx.font = jjj4+"px "+kk5;
+ctx.fillText(y4,ii9,ii10);
+
+
+ctx.fillStyle = jj6;
+k6 = document.getElementById("506");
+    var kk6 = k6.options[k6.selectedIndex].text;
+    ctx.font = jjj5+"px "+kk6;
+ctx.fillText(y5,ii11,ii12);
+
+
+ctx.fillStyle = jj7;
+k7 = document.getElementById("507");
+    var kk7 = k7.options[k7.selectedIndex].text;
+    ctx.font = jjj6+"px "+kk7;
+ctx.fillText(y6,ii13,ii14);
+
+ctx.fillStyle = jj8;
+k8 = document.getElementById("508");
+    var kk8 = k8.options[k8.selectedIndex].text;
+    ctx.font = jjj7+"px "+kk8;
+ctx.fillText(y7,ii15,ii16);
+
+ctx.fillStyle = jj9;
+k9 = document.getElementById("509");
+    var kk9 = k9.options[k9.selectedIndex].text;
+    ctx.font = jjj8+"px "+kk9;
+ctx.fillText(y8,ii17,ii18);
+
+
+ctx.fillStyle = jj10;
+k10 = document.getElementById("510");
+    var kk10 = k10.options[k10.selectedIndex].text;
+    ctx.font = jjj9+"px "+kk10;
+ctx.fillText(y9,ii19,ii20);
+
+
+ ctx.fillStyle = jj11;
+    k11 = document.getElementById("511");
+    var kk11 = k11.options[k11.selectedIndex].text;
+    ctx.font = jjj10+"px "+kk11;
+    ctx.fillText(y10,ii21,ii22);
+
+
+ctx.fillStyle = jj12;
+    k12 = document.getElementById("512");
+    var kk12 = k12.options[k12.selectedIndex].text;
+    ctx.font = jjj11+"px "+kk12;
+    ctx.fillText(y11,ii23,ii24); 
+
+
+ctx.fillStyle = jj13;
+    k13 = document.getElementById("513");
+    var kk13 = k13.options[k13.selectedIndex].text;
+    ctx.font = jjj12+"px "+kk13;
+    ctx.fillText(y12,ii25,ii26); 
+
+
+
+ctx.fillStyle = jj14;
+    k14 = document.getElementById("514");
+    var kk14 = k14.options[k14.selectedIndex].text;
+    ctx.font = jjj13+"px "+kk14;
+    ctx.fillText(y13,ii27,ii28); 
+
+
+
+ctx.fillStyle = jj15;
+    k15 = document.getElementById("515");
+    var kk15 = k15.options[k15.selectedIndex].text;
+    ctx.font = jjj14+"px "+kk15;
+    ctx.fillText(y14,ii29,ii30); 
+
+
+ctx.fillStyle = jj16;
+    k16 = document.getElementById("516");
+    var kk16 = k16.options[k16.selectedIndex].text;
+    ctx.font = jjj15+"px "+kk16;
+    ctx.fillText(y15,ii31,ii32); 
+
+ctx.fillStyle = jj17;
+    k17 = document.getElementById("517");
+    var kk17 = k17.options[k17.selectedIndex].text;
+    ctx.font = jjj16+"px "+kk17;
+    ctx.fillText(y16,ii33,ii34); 
+
+    ctx.fillStyle = jj18;
+    k18 = document.getElementById("518");
+    var kk18 = k18.options[k18.selectedIndex].text;
+    ctx.font = jjj17+"px "+kk18;
+    ctx.fillText(y17,ii35,ii36); 
+
+
+    }
+    if(x==19){
+
+    y0=document.getElementById("1").value;
+      y1=document.getElementById("2").value;
+      y2=document.getElementById("3").value;
+y3=document.getElementById("4").value;
+y4=document.getElementById("5").value;
+y5=document.getElementById("6").value;
+y6=document.getElementById("7").value;
+y7=document.getElementById("8").value;
+y8=document.getElementById("9").value;
+y9=document.getElementById("10").value;
+y10=document.getElementById("11").value;
+y11=document.getElementById("12").value;
+y12=document.getElementById("13").value;
+y13=document.getElementById("14").value;
+y14=document.getElementById("15").value;
+y15=document.getElementById("16").value;
+y16=document.getElementById("17").value;
+y17=document.getElementById("18").value;
+y18=document.getElementById("19").value;
+
+
+
+      ii1=document.getElementById("31").value;
+    ii2=document.getElementById("101").value;
+    jj1=document.getElementById("1001").value;
+     jjj0=document.getElementById("10001").value;
+
+    ii3=document.getElementById("32").value;
+    ii4=document.getElementById("102").value;
+    jj2=document.getElementById("1002").value;
+     jjj1=document.getElementById("10002").value;
+
+     ii5=document.getElementById("33").value;
+    ii6=document.getElementById("103").value;
+    jj3=document.getElementById("1003").value;
+     jjj2=document.getElementById("10003").value;
+
+     ii7=document.getElementById("34").value;
+    ii8=document.getElementById("104").value;
+    jj4=document.getElementById("1004").value;
+     jjj3=document.getElementById("10004").value;
+
+    ii9=document.getElementById("35").value;
+    ii10=document.getElementById("105").value;
+    jj5=document.getElementById("1005").value;
+     jjj4=document.getElementById("10005").value;
+
+     ii11=document.getElementById("36").value;
+    ii12=document.getElementById("106").value;
+    jj6=document.getElementById("1006").value;
+     jjj5=document.getElementById("10006").value;
+
+     ii13=document.getElementById("37").value;
+    ii14=document.getElementById("107").value;
+    jj7=document.getElementById("1007").value;
+     jjj6=document.getElementById("10007").value;
+
+     ii15=document.getElementById("38").value;
+    ii16=document.getElementById("108").value;
+    jj8=document.getElementById("1008").value;
+     jjj7=document.getElementById("10008").value;
+
+    ii17=document.getElementById("39").value;
+    ii18=document.getElementById("109").value;
+    jj9=document.getElementById("1009").value;
+     jjj8=document.getElementById("10009").value;
+
+
+    ii19=document.getElementById("40").value;
+    ii20=document.getElementById("110").value;
+    jj10=document.getElementById("1010").value;
+     jjj9=document.getElementById("10010").value;
+
+     ii21=document.getElementById("41").value;
+    ii22=document.getElementById("111").value;
+    jj11=document.getElementById("1011").value;
+     jjj10=document.getElementById("10011").value;
+
+     ii23=document.getElementById("42").value;
+    ii24=document.getElementById("112").value;
+    jj12=document.getElementById("1012").value;
+     jjj11=document.getElementById("10012").value;
+
+     ii25=document.getElementById("43").value;
+    ii26=document.getElementById("113").value;
+    jj13=document.getElementById("1013").value;
+     jjj12=document.getElementById("10013").value;
+
+     ii27=document.getElementById("44").value;
+    ii28=document.getElementById("114").value;
+    jj14=document.getElementById("1014").value;
+     jjj13=document.getElementById("10014").value;
+
+    ii29=document.getElementById("45").value;
+    ii30=document.getElementById("115").value;
+    jj15=document.getElementById("1015").value;
+     jjj14=document.getElementById("10015").value;
+
+     ii31=document.getElementById("46").value;
+    ii32=document.getElementById("116").value;
+    jj16=document.getElementById("1016").value;
+     jjj15=document.getElementById("10016").value;
+
+     ii33=document.getElementById("47").value;
+    ii34=document.getElementById("117").value;
+    jj17=document.getElementById("1017").value;
+     jjj16=document.getElementById("10017").value;
+
+     ii35=document.getElementById("48").value;
+    ii36=document.getElementById("118").value;
+    jj18=document.getElementById("1018").value;
+     jjj17=document.getElementById("10018").value;
+
+     ii37=document.getElementById("49").value;
+    ii38=document.getElementById("119").value;
+    jj19=document.getElementById("1019").value;
+     jjj18=document.getElementById("10019").value;
+
+
+
+    ctx.fillStyle = jj1;
+k1 = document.getElementById("501");
+    var kk1 = k1.options[k1.selectedIndex].text;
+    ctx.font = jjj0+"px "+kk1;
+ctx.fillText(y0,ii1,ii2);
+
+
+
+ctx.fillStyle = jj2;
+k2 = document.getElementById("502");
+    var kk2 = k2.options[k2.selectedIndex].text;
+    ctx.font = jjj1+"px "+kk2;
+ctx.fillText(y1,ii3,ii4);
+
+
+ctx.fillStyle = jj3;
+k3 = document.getElementById("503");
+    var kk3 = k3.options[k3.selectedIndex].text;
+    ctx.font = jjj2+"px "+kk3;
+ctx.fillText(y2,ii5,ii6);
+
+
+ ctx.fillStyle = jj4;
+k4 = document.getElementById("504");
+    var kk4 = k4.options[k4.selectedIndex].text;
+    ctx.font = jjj3+"px "+kk4;
+ctx.fillText(y3,ii7,ii8);
+
+
+ctx.fillStyle = jj5;
+k5 = document.getElementById("505");
+    var kk5 = k5.options[k5.selectedIndex].text;
+    ctx.font = jjj4+"px "+kk5;
+ctx.fillText(y4,ii9,ii10);
+
+
+ctx.fillStyle = jj6;
+k6 = document.getElementById("506");
+    var kk6 = k6.options[k6.selectedIndex].text;
+    ctx.font = jjj5+"px "+kk6;
+ctx.fillText(y5,ii11,ii12);
+
+
+ctx.fillStyle = jj7;
+k7 = document.getElementById("507");
+    var kk7 = k7.options[k7.selectedIndex].text;
+    ctx.font = jjj6+"px "+kk7;
+ctx.fillText(y6,ii13,ii14);
+
+ctx.fillStyle = jj8;
+k8 = document.getElementById("508");
+    var kk8 = k8.options[k8.selectedIndex].text;
+    ctx.font = jjj7+"px "+kk8;
+ctx.fillText(y7,ii15,ii16);
+
+ctx.fillStyle = jj9;
+k9 = document.getElementById("509");
+    var kk9 = k9.options[k9.selectedIndex].text;
+    ctx.font = jjj8+"px "+kk9;
+ctx.fillText(y8,ii17,ii18);
+
+
+ctx.fillStyle = jj10;
+k10 = document.getElementById("510");
+    var kk10 = k10.options[k10.selectedIndex].text;
+    ctx.font = jjj9+"px "+kk10;
+ctx.fillText(y9,ii19,ii20);
+
+
+ ctx.fillStyle = jj11;
+    k11 = document.getElementById("511");
+    var kk11 = k11.options[k11.selectedIndex].text;
+    ctx.font = jjj10+"px "+kk11;
+    ctx.fillText(y10,ii21,ii22);
+
+
+ctx.fillStyle = jj12;
+    k12 = document.getElementById("512");
+    var kk12 = k12.options[k12.selectedIndex].text;
+    ctx.font = jjj11+"px "+kk12;
+    ctx.fillText(y11,ii23,ii24); 
+
+
+ctx.fillStyle = jj13;
+    k13 = document.getElementById("513");
+    var kk13 = k13.options[k13.selectedIndex].text;
+    ctx.font = jjj12+"px "+kk13;
+    ctx.fillText(y12,ii25,ii26); 
+
+
+
+ctx.fillStyle = jj14;
+    k14 = document.getElementById("514");
+    var kk14 = k14.options[k14.selectedIndex].text;
+    ctx.font = jjj13+"px "+kk14;
+    ctx.fillText(y13,ii27,ii28); 
+
+
+
+ctx.fillStyle = jj15;
+    k15 = document.getElementById("515");
+    var kk15 = k15.options[k15.selectedIndex].text;
+    ctx.font = jjj14+"px "+kk15;
+    ctx.fillText(y14,ii29,ii30); 
+
+
+ctx.fillStyle = jj16;
+    k16 = document.getElementById("516");
+    var kk16 = k16.options[k16.selectedIndex].text;
+    ctx.font = jjj15+"px "+kk16;
+    ctx.fillText(y15,ii31,ii32); 
+
+ctx.fillStyle = jj17;
+    k17 = document.getElementById("517");
+    var kk17 = k17.options[k17.selectedIndex].text;
+    ctx.font = jjj16+"px "+kk17;
+    ctx.fillText(y16,ii33,ii34); 
+
+
+
+ctx.fillStyle = jj18;
+    k18 = document.getElementById("518");
+    var kk18 = k18.options[k18.selectedIndex].text;
+    ctx.font = jjj17+"px "+kk18;
+    ctx.fillText(y17,ii35,ii36); 
+
+    ctx.fillStyle = jj19;
+    k19 = document.getElementById("519");
+    var kk19 = k19.options[k19.selectedIndex].text;
+    ctx.font = jjj18+"px "+kk19;
+    ctx.fillText(y18,ii37,ii38); 
+
+    }
+    if(x==20){
+      
+     y0=document.getElementById("1").value;
+      y1=document.getElementById("2").value;
+      y2=document.getElementById("3").value;
+y3=document.getElementById("4").value;
+y4=document.getElementById("5").value;
+y5=document.getElementById("6").value;
+y6=document.getElementById("7").value;
+y7=document.getElementById("8").value;
+y8=document.getElementById("9").value;
+y9=document.getElementById("10").value;
+y10=document.getElementById("11").value;
+y11=document.getElementById("12").value;
+y12=document.getElementById("13").value;
+y13=document.getElementById("14").value;
+y14=document.getElementById("15").value;
+y15=document.getElementById("16").value;
+y16=document.getElementById("17").value;
+y17=document.getElementById("18").value;
+y18=document.getElementById("19").value;
+y19=document.getElementById("20").value;
+
+
+
+      ii1=document.getElementById("31").value;
+    ii2=document.getElementById("101").value;
+    jj1=document.getElementById("1001").value;
+     jjj0=document.getElementById("10001").value;
+
+    ii3=document.getElementById("32").value;
+    ii4=document.getElementById("102").value;
+    jj2=document.getElementById("1002").value;
+     jjj1=document.getElementById("10002").value;
+
+     ii5=document.getElementById("33").value;
+    ii6=document.getElementById("103").value;
+    jj3=document.getElementById("1003").value;
+     jjj2=document.getElementById("10003").value;
+
+     ii7=document.getElementById("34").value;
+    ii8=document.getElementById("104").value;
+    jj4=document.getElementById("1004").value;
+     jjj3=document.getElementById("10004").value;
+
+    ii9=document.getElementById("35").value;
+    ii10=document.getElementById("105").value;
+    jj5=document.getElementById("1005").value;
+     jjj4=document.getElementById("10005").value;
+
+     ii11=document.getElementById("36").value;
+    ii12=document.getElementById("106").value;
+    jj6=document.getElementById("1006").value;
+     jjj5=document.getElementById("10006").value;
+
+     ii13=document.getElementById("37").value;
+    ii14=document.getElementById("107").value;
+    jj7=document.getElementById("1007").value;
+     jjj6=document.getElementById("10007").value;
+
+     ii15=document.getElementById("38").value;
+    ii16=document.getElementById("108").value;
+    jj8=document.getElementById("1008").value;
+     jjj7=document.getElementById("10008").value;
+
+    ii17=document.getElementById("39").value;
+    ii18=document.getElementById("109").value;
+    jj9=document.getElementById("1009").value;
+     jjj8=document.getElementById("10009").value;
+
+
+    ii19=document.getElementById("40").value;
+    ii20=document.getElementById("110").value;
+    jj10=document.getElementById("1010").value;
+     jjj9=document.getElementById("10010").value;
+
+     ii21=document.getElementById("41").value;
+    ii22=document.getElementById("111").value;
+    jj11=document.getElementById("1011").value;
+     jjj10=document.getElementById("10011").value;
+
+     ii23=document.getElementById("42").value;
+    ii24=document.getElementById("112").value;
+    jj12=document.getElementById("1012").value;
+     jjj11=document.getElementById("10012").value;
+
+     ii25=document.getElementById("43").value;
+    ii26=document.getElementById("113").value;
+    jj13=document.getElementById("1013").value;
+     jjj12=document.getElementById("10013").value;
+
+     ii27=document.getElementById("44").value;
+    ii28=document.getElementById("114").value;
+    jj14=document.getElementById("1014").value;
+     jjj13=document.getElementById("10014").value;
+
+    ii29=document.getElementById("45").value;
+    ii30=document.getElementById("115").value;
+    jj15=document.getElementById("1015").value;
+     jjj14=document.getElementById("10015").value;
+
+     ii31=document.getElementById("46").value;
+    ii32=document.getElementById("116").value;
+    jj16=document.getElementById("1016").value;
+     jjj15=document.getElementById("10016").value;
+
+     ii33=document.getElementById("47").value;
+    ii34=document.getElementById("117").value;
+    jj17=document.getElementById("1017").value;
+     jjj16=document.getElementById("10017").value;
+
+     ii35=document.getElementById("48").value;
+    ii36=document.getElementById("118").value;
+    jj18=document.getElementById("1018").value;
+     jjj17=document.getElementById("10018").value;
+
+     ii37=document.getElementById("49").value;
+    ii38=document.getElementById("119").value;
+    jj19=document.getElementById("1019").value;
+     jjj18=document.getElementById("10019").value;
+
+     ii39=document.getElementById("50").value;
+    ii40=document.getElementById("120").value;
+    jj20=document.getElementById("1020").value;
+     jjj19=document.getElementById("10020").value;
+
+
+
+    
+ctx.fillStyle = jj1;
+k1 = document.getElementById("501");
+    var kk1 = k1.options[k1.selectedIndex].text;
+    ctx.font = jjj0+"px "+kk1;
+ctx.fillText(y0,ii1,ii2);
+
+
+
+ctx.fillStyle = jj2;
+k2 = document.getElementById("502");
+    var kk2 = k2.options[k2.selectedIndex].text;
+    ctx.font = jjj1+"px "+kk2;
+ctx.fillText(y1,ii3,ii4);
+
+
+ctx.fillStyle = jj3;
+k3 = document.getElementById("503");
+    var kk3 = k3.options[k3.selectedIndex].text;
+    ctx.font = jjj2+"px "+kk3;
+ctx.fillText(y2,ii5,ii6);
+
+
+ ctx.fillStyle = jj4;
+k4 = document.getElementById("504");
+    var kk4 = k4.options[k4.selectedIndex].text;
+    ctx.font = jjj3+"px "+kk4;
+ctx.fillText(y3,ii7,ii8);
+
+
+ctx.fillStyle = jj5;
+k5 = document.getElementById("505");
+    var kk5 = k5.options[k5.selectedIndex].text;
+    ctx.font = jjj4+"px "+kk5;
+ctx.fillText(y4,ii9,ii10);
+
+
+ctx.fillStyle = jj6;
+k6 = document.getElementById("506");
+    var kk6 = k6.options[k6.selectedIndex].text;
+    ctx.font = jjj5+"px "+kk6;
+ctx.fillText(y5,ii11,ii12);
+
+
+ctx.fillStyle = jj7;
+k7 = document.getElementById("507");
+    var kk7 = k7.options[k7.selectedIndex].text;
+    ctx.font = jjj6+"px "+kk7;
+ctx.fillText(y6,ii13,ii14);
+
+ctx.fillStyle = jj8;
+k8 = document.getElementById("508");
+    var kk8 = k8.options[k8.selectedIndex].text;
+    ctx.font = jjj7+"px "+kk8;
+ctx.fillText(y7,ii15,ii16);
+
+ctx.fillStyle = jj9;
+k9 = document.getElementById("509");
+    var kk9 = k9.options[k9.selectedIndex].text;
+    ctx.font = jjj8+"px "+kk9;
+ctx.fillText(y8,ii17,ii18);
+
+
+ctx.fillStyle = jj10;
+k10 = document.getElementById("510");
+    var kk10 = k10.options[k10.selectedIndex].text;
+    ctx.font = jjj9+"px "+kk10;
+ctx.fillText(y9,ii19,ii20);
+
+
+ ctx.fillStyle = jj11;
+    k11 = document.getElementById("511");
+    var kk11 = k11.options[k11.selectedIndex].text;
+    ctx.font = jjj10+"px "+kk11;
+    ctx.fillText(y10,ii21,ii22);
+
+
+ctx.fillStyle = jj12;
+    k12 = document.getElementById("512");
+    var kk12 = k12.options[k12.selectedIndex].text;
+    ctx.font = jjj11+"px "+kk12;
+    ctx.fillText(y11,ii23,ii24); 
+
+
+ctx.fillStyle = jj13;
+    k13 = document.getElementById("513");
+    var kk13 = k13.options[k13.selectedIndex].text;
+    ctx.font = jjj12+"px "+kk13;
+    ctx.fillText(y12,ii25,ii26); 
+
+
+
+ctx.fillStyle = jj14;
+    k14 = document.getElementById("514");
+    var kk14 = k14.options[k14.selectedIndex].text;
+    ctx.font = jjj13+"px "+kk14;
+    ctx.fillText(y13,ii27,ii28); 
+
+
+
+ctx.fillStyle = jj15;
+    k15 = document.getElementById("515");
+    var kk15 = k15.options[k15.selectedIndex].text;
+    ctx.font = jjj14+"px "+kk15;
+    ctx.fillText(y14,ii29,ii30); 
+
+
+ctx.fillStyle = jj16;
+    k16 = document.getElementById("516");
+    var kk16 = k16.options[k16.selectedIndex].text;
+    ctx.font = jjj15+"px "+kk16;
+    ctx.fillText(y15,ii31,ii32); 
+
+ctx.fillStyle = jj17;
+    k17 = document.getElementById("517");
+    var kk17 = k17.options[k17.selectedIndex].text;
+    ctx.font = jjj16+"px "+kk17;
+    ctx.fillText(y16,ii33,ii34); 
+
+
+
+ctx.fillStyle = jj18;
+    k18 = document.getElementById("518");
+    var kk18 = k18.options[k18.selectedIndex].text;
+    ctx.font = jjj17+"px "+kk18;
+    ctx.fillText(y17,ii35,ii36); 
+
+
+ctx.fillStyle = jj19;
+    k19 = document.getElementById("519");
+    var kk19 = k19.options[k19.selectedIndex].text;
+    ctx.font = jjj18+"px "+kk19;
+    ctx.fillText(y18,ii37,ii38); 
+
+    ctx.fillStyle = jj20;
+    k20 = document.getElementById("520");
+    var kk20 = k20.options[k20.selectedIndex].text;
+    ctx.font = jjj19+"px "+kk20;
+    ctx.fillText(y19,ii39,ii40); 
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
+
+
+    else{
+
+    }
+}
+function DynamicText(img) {
+  document.getElementById(x).addEventListener('keyup', function() {
+    ctx.clearRect(0, 0,canvas.width, canvas.height);
+    DrawOverlay(img);
+    DrawText(); 
+  
+    if(x==1){
+      ii1=document.getElementById("31").value;
+    ii2=document.getElementById("101").value;
+    y0=document.getElementById("1").value;
+       ctx.fillText(y0,ii1,ii2);
+      
+    }
+    if(x==2){
+      
+    ii3=document.getElementById("32").value;
+    ii4=document.getElementById("102").value;
+    
+     y1=document.getElementById("2").value;
+      
+      ctx.fillText(y1,ii3,ii4);
+    }
+    if(x==3){
+      
+     ii5=document.getElementById("33").value;
+    ii6=document.getElementById("103").value;
+     y2=document.getElementById("3").value;
+      
+      ctx.fillText(y2,ii5,ii6);
+    }
+    if(x==4){
+      
+    ii7=document.getElementById("34").value;
+    ii8=document.getElementById("104").value;
+    
+     
+     y3=document.getElementById("4").value;
+      
+      ctx.fillText(y3,ii7,ii8);
+    }
+    if(x==5){
+     
+    ii9=document.getElementById("35").value;
+    ii10=document.getElementById("105").value;
+    
+     
+     y4=document.getElementById("5").value;
+       
+      ctx.fillText(y4,ii9,ii10);
+    }
+    if(x==6){
+      
+    ii11=document.getElementById("36").value;
+    ii12=document.getElementById("106").value;
+    
+     y5=document.getElementById("6").value;
+      
+      ctx.fillText(y5,ii11,ii12);
+    }
+
+   if(x==7){
+   
+    ii13=document.getElementById("37").value;
+    ii14=document.getElementById("107").value;
+    
+     y6=document.getElementById("7").value;
+      
+      ctx.fillText(y6,ii13,ii14);
+   }
+  if(x==8){
+    
+    ii15=document.getElementById("38").value;
+    ii16=document.getElementById("108").value;
+    
+     y7=document.getElementById("8").value;
+      
+      ctx.fillText(y7,ii15,ii16);
+  }
+  if(x==9){
+    
+    ii17=document.getElementById("39").value;
+    ii18=document.getElementById("109").value;
+    
+     y8=document.getElementById("9").value;
+      
+      ctx.fillText(y8,ii17,ii18);
+  }
+  if(x==10){
+    
+    ii19=document.getElementById("40").value;
+    ii20=document.getElementById("110").value;
+    
+    
+     y9=document.getElementById("10").value;
+
+      
+      ctx.fillText(y9,ii19,ii20);
+  }
+  if(x==11)
+  {
+    
+    ii21=document.getElementById("41").value;
+    ii22=document.getElementById("111").value;
+    
+    
+      y10=document.getElementById("11").value;
+
+      
+      ctx.fillText(y10,ii21,ii22);
+  }
+  if(x==12){
+    
+    
+    ii23=document.getElementById("42").value;
+    ii24=document.getElementById("112").value;
+    
+    
+     y11=document.getElementById("12").value;
+
+      
+      ctx.fillText(y11,ii23,ii24);
+  }
+  if(x==13){
+
+    ii25=document.getElementById("43").value;
+    ii26=document.getElementById("113").value;
+    
+    
+     y12=document.getElementById("13").value;
+
+     
+      ctx.fillText(y12,ii25,ii26);
+  }
+  if(x==14){
+
+    ii27=document.getElementById("44").value;
+    ii28=document.getElementById("114").value;
+    
+    
+     y13=document.getElementById("14").value;
+
+      
+      ctx.fillText(y13,ii27,ii28);
+  }
+  if(x==15){
+
+    ii29=document.getElementById("45").value;
+    ii30=document.getElementById("115").value;
+    
+    
+     y14=document.getElementById("15").value;
+
+      
+      
+      ctx.fillText(y14,ii29,ii30);
+  }
+  if(x==16){
+
+    ii31=document.getElementById("46").value;
+    ii32=document.getElementById("116").value;
+
+    
+     y15=document.getElementById("16").value;
+
+      
+      ctx.fillText(y15,ii31,ii32);
+  }
+  if(x==17){
+
+    ii33=document.getElementById("47").value;
+    ii34=document.getElementById("117").value;
+
+    
+     y16=document.getElementById("17").value;
+
+      
+      ctx.fillText(y16,ii33,ii34);
+  }
+  if(x==18){
+
+    ii35=document.getElementById("48").value;
+    ii36=document.getElementById("118").value;
+
+   
+     y17=document.getElementById("18").value;
+
+      
+      ctx.fillText(y17,ii35,ii36);
+  }
+  if(x==19){
+
+    ii37=document.getElementById("49").value;
+    ii38=document.getElementById("119").value;
+
+    
+     y18=document.getElementById("19").value;
+
+      
+      ctx.fillText(y18,ii37,ii38);
+  }
+  if(x==20){
+
+    ii39=document.getElementById("50").value;
+    ii40=document.getElementById("120").value;
+
+    
+     y19=document.getElementById("20").value;
+
+      
+      ctx.fillText(y19,ii39,ii40);
+  }
+
+        else{
+
+    }
+    
+
+   
+  
+
+  });
+}
+function handleImage(e) {
+    var reader = new FileReader();
+    
+    var src = "";
+    reader.onload = function(event) {
+        
+        img.onload = function() {
+            canvas.width = img.width;
+            canvas.height = img.height;
+            
+            ctx.drawImage(img,0,0);
+        }
+        img.src = event.target.result;
+        src = event.target.result;
+        canvas.classList.add("show");
+        DrawOverlay(img);
+        DrawText(); 
+        DynamicText(img);   
+    }
+
+    reader.readAsDataURL(e.target.files[0]); 
+ 
+}
+function download(){
+	var link=document.createElement("a");
+	document.body.appendChild(link);
+	link.download="html_image.png";
+	link.href=canvas.toDataURL("image/png");
+	link.target="_blank";
+	link.click();
+}
+
+
+function show(){
+ x=x+1;
+ y=y+1;
+ z=z+1;
+ w=w+1;
+ o=o+1;
+ f=f+1;
+    var objNewDiv = document.createElement('div');
+    objNewDiv.setAttribute('id', 'div_' + x);
+    
+    objNewDiv.innerHTML = '<select id="'+f+'" oninput="a()" style="color:#d9d9d9;background-color:#262626;outline:none;padding:10px 10px;font-size:15px;"><option>-- Select --</option><option>Times New Roman</option><option>Georgia</option><option>Garamond</option><option>Arial</option><option>Verdana</option><option>Helvetica</option><option>Courier New</option><option>Lucida Console</option><option>Monaco</option><option>Brush Script MT</option><option>Lucida Handwriting</option><option>Copperplate</option><option>Papyrus</option></select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id="'+x+'" name="'+x+'" style="color:#595959;padding:10px 10px;border-radius:16px;font-size: 25px;outline:none;border-color:transparent;background-color:#d9d9d9;"  oninput="post()"/>&nbsp;&nbsp;&nbsp;&nbsp;<input type="range" min="0" max="2000" value="0" step="0.01" id="'+y+'" oninput="post()"/><input type="range" min="0" max="2500" value="20" step="0.01" id="'+z+'" style="transform: rotate(-270deg);" oninput="post()"/><input type="range" min="0" max="500" value="30" step="0.01"  id="'+o+'" oninput="post()"/>&nbsp;&nbsp;&nbsp;&nbsp;<input type="color" id="'+w+'" onchange="post()"/><br><br><br><br><br><br><br><br>';
+    document.getElementById('demo').appendChild(objNewDiv);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+
+
+<div class="h3">
+
+<br><br>
+<button class="btn" onclick="download()"><i class="fa fa-download" ></i> Download Meme</button>
+
+
+<br><br><br><br>
+
+
+<br><br><br><br><br><br><br>
+</div>
+
+<footer>
+ <span style="color:white;font-family: 'Courier New', monospace;"> If you are facing any issue please mail to nikhilgs2001@gmail.com </span>
+</footer>
+
+
+
+
+
+
+
+
+
+</body>	
+</html>
